@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Altipal\\.nuget\\packages\\": {}
+    "C:\\Users\\vivia\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Altipal\\Documents\\GitHub\\ProyectoTec2\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\Users\\vivia\\OneDrive\\Desktop\\TECNICAS 2\\Alarm\\TEC2-2-APP\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "C:\\Users\\Altipal\\Documents\\GitHub\\ProyectoTec2\\Application\\Application.csproj",
-      "packagesPath": "C:\\Users\\Altipal\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Altipal\\Documents\\GitHub\\ProyectoTec2\\Application\\obj\\",
+      "projectPath": "C:\\Users\\vivia\\OneDrive\\Desktop\\TECNICAS 2\\Alarm\\TEC2-2-APP\\Application.csproj",
+      "packagesPath": "C:\\Users\\vivia\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\vivia\\OneDrive\\Desktop\\TECNICAS 2\\Alarm\\TEC2-2-APP\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Altipal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\vivia\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
