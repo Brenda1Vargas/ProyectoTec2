@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Application
 {
 
-    public class LugarFrecuente
+    public class LugaresFrecuentes
     {
         private string nombre;
         private double latitud;
@@ -28,7 +28,7 @@ namespace Application
             set { longitud = value; }
         }
 
-        public LugarFrecuente(string nombre, double latitud, double longitud)
+        public LugaresFrecuentes(string nombre, double latitud, double longitud)
         {
             Nombre = nombre;
             Latitud = latitud;

@@ -14,6 +14,8 @@ namespace Application
         private DateTime fecha;
         private int hora;
         private int numero;
+        private List<ContactoEmergencia> contactosEmergencia;
+
 
         public string Ubicacion
         {
@@ -39,25 +41,28 @@ namespace Application
             set { numero = value; }
         }
 
-        // Método para enviar la alerta a las autoridades o contactos personales.
+        public List<ContactoEmergencia> ContactosEmergencia
+        {
+            get { return contactosEmergencia; }
+            set { contactosEmergencia = value; }
+        }
+
         public void EnviarAlerta()
         {
-            // notificar a las autoridades o contactos personales.
-            Console.WriteLine($"Alerta enviada desde {Ubicacion} a las {Hora} el {Fecha}.");
+            foreach (var contacto in contactosEmergencia)
+            {
+                // Simulación de envío de alertas (puedes imprimir mensajes en la consola)
+                Console.WriteLine($"Alerta enviada a {contacto.Nombre} ({contacto.Relacion}) en el número {contacto.Telefono}");
+            }
         }
-
-        // Generar un ID único para la alerta 
         public int GenerarID()
         {
-
-            return 0;
+            // Implementa la lógica para generar un ID único aquí
+            return 0; // Por ahora, retorna un valor constante
         }
 
-
-        // Actualizar la fecha de la alerta
         public void ActualizarFecha(DateTime nuevaFecha)
         {
-
             Fecha = nuevaFecha;
         }
     }
