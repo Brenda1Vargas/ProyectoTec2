@@ -12,3 +12,10 @@ C:\Users\Altipal\Documents\GitHub\TEC2-2-APP\Application\Application\obj\Debug\n
 C:\Users\Altipal\Documents\GitHub\TEC2-2-APP\Application\Application\obj\Debug\net6.0\Application.pdb
 C:\Users\Altipal\Documents\GitHub\TEC2-2-APP\Application\Application\obj\Debug\net6.0\Application.genruntimeconfig.cache
 C:\Users\Altipal\Documents\GitHub\TEC2-2-APP\Application\Application\obj\Debug\net6.0\ref\Application.dll
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\obj\Debug\net6.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\obj\Debug\net6.0\Application.AssemblyInfoInputs.cache
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\obj\Debug\net6.0\Application.AssemblyInfo.cs
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\obj\Debug\net6.0\Application.csproj.CoreCompileInputs.cache
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\obj\Debug\net6.0\Application.dll
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\obj\Debug\net6.0\refint\Application.dll
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\obj\Debug\net6.0\Application.pdb

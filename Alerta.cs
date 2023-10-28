@@ -51,15 +51,39 @@ namespace Application
         {
             foreach (var contacto in contactosEmergencia)
             {
-                // Simulación de envío de alertas (puedes imprimir mensajes en la consola)
+               
                 Console.WriteLine($"Alerta enviada a {contacto.Nombre} ({contacto.Relacion}) en el número {contacto.Telefono}");
             }
         }
         public int GenerarID()
         {
-            // Implementa la lógica para generar un ID único aquí
-            return 0; // Por ahora, retorna un valor constante
+           
+            // Obtiene la fecha y hora actual.
+            DateTime ahora = DateTime.Now;
+
+            // Genera un valor único 
+            int valorUnico = ObtenerValorUnico();
+
+            // Combina la fecha y el valor único para generar un ID único.
+            string idUnico = ahora.ToString("yyyyMMddHHmmssfff") + valorUnico;
+
+            // Convierte el ID único a un entero
+            if (int.TryParse(idUnico, out int idEntero))
+            {
+                return idEntero;
+            }
+
+            // Si no se puede convertir a entero, retorna un valor predeterminado
+            return -1;
         }
+
+        private int ObtenerValorUnico()
+        {
+  
+            Random random = new Random();
+            return random.Next(1000, 9999); // Número aleatorio de 4 dígitos como ejemplo.
+        }
+
 
         public void ActualizarFecha(DateTime nuevaFecha)
         {

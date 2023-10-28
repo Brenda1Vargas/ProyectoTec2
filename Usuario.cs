@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+
+
 
 namespace Application
 {
@@ -47,17 +45,36 @@ namespace Application
         {
             get { return age; }
             set
-            {
+
+
                 if (age < 18)
-                {
-                    throw new Exception("Invalid Age");
-                }
-                else
-                {
-                    age = value;
-                }
+            {
+                throw new Exception("Invalid Age");
+            }
+            else
+            {
+                age = value;
+            }
 
             }
+        }
+    }
+    public class Alarma
+    {
+        public void DetectarPeligro(Usuario usuario, string mensajePeligro)
+        {
+
+            if (mensajePeligro == "Eln")
+            {
+                Console.WriteLine($"¡Peligro para el usuario {usuario.FirstName}! Eln detectado.");
+
+            }
+            else if (mensajePeligro == "Intruso")
+            {
+                Console.WriteLine($"¡Peligro para el usuario {usuario.FirstName}! Farc detectados ");
+
+            }
+
         }
     }
 }
