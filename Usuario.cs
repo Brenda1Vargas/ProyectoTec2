@@ -41,15 +41,19 @@ namespace Application
             {
                 if (value < 18)
                 {
-                    throw new Exception("Invalid Age");
+                    Console.WriteLine("La persona es menor de edad.");
                 }
                 else
                 {
-                    age = value;
+                    Console.WriteLine("La persona es mayor de edad.");
                 }
+                age = value;
             }
         }
+
     }
+
+
 
     public class Alarma
     {
