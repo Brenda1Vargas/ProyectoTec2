@@ -12,7 +12,7 @@ namespace Application
 {
     public class Usuario
     {
-        //hola
+      
         private string firstName;
         private string lastName;
         private int age;
@@ -55,9 +55,6 @@ namespace Application
             {
                 age = value;
             }
-
-            }
-        }
     }
     public class Alarma
     {
