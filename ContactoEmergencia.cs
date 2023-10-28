@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application
 {
-    public class ContactoPersonal
+    public class ContactoEmergencia
     {
         private int age;
         private int _id;
@@ -14,21 +10,20 @@ namespace Application
         private string lastName;
         private string email;
         private string parentezco;
+        private string telefonoContacto;
 
         public int Id
         {
             get { return _id; }
             set { _id = value; }
-
         }
-
 
         public int Age
         {
             get { return age; }
             set
             {
-                if (age < 18)
+                if (value < 18)
                 {
                     throw new Exception("Invalid Age");
                 }
@@ -36,7 +31,6 @@ namespace Application
                 {
                     age = value;
                 }
-
             }
         }
 
@@ -45,11 +39,13 @@ namespace Application
             get { return firstName; }
             set { firstName = value; }
         }
+
         public string LastName
         {
             get { return lastName; }
             set { lastName = value; }
         }
+
         public string FullName
         {
             get { return $"{firstName} {lastName}"; }
@@ -66,7 +62,12 @@ namespace Application
             get { return parentezco; }
             set { parentezco = value; }
         }
+
+        public string TelefonoContacto
+        {
+            get { return telefonoContacto; }
+            set { telefonoContacto = value; }
+        }
+
     }
-
-
 }

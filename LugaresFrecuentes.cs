@@ -10,6 +10,10 @@ namespace Application
         private double latitud;
         private double longitud;
 
+        public LugaresFrecuentes()
+        {
+        }
+
         public string Nombre
         {
             get { return nombre; }
@@ -33,6 +37,11 @@ namespace Application
             Nombre = nombre;
             Latitud = latitud;
             Longitud = longitud;
+        }
+
+        internal void AgregarLugar(string? nombreLugar, double latitud, double longitud)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-using System;
+
 
 namespace Application
 {
@@ -14,6 +11,7 @@ namespace Application
         private DateTime fecha;
         private int hora;
         private int numero;
+        private string telefonoContacto;
         private List<ContactoEmergencia> contactosEmergencia;
 
 
@@ -41,6 +39,13 @@ namespace Application
             set { numero = value; }
         }
 
+
+        public string TelefonoContacto
+        {
+            get { return telefonoContacto; }
+            set { telefonoContacto = value; }
+        }
+
         public List<ContactoEmergencia> ContactosEmergencia
         {
             get { return contactosEmergencia; }
@@ -51,35 +56,34 @@ namespace Application
         {
             foreach (var contacto in contactosEmergencia)
             {
-               
-                Console.WriteLine($"Alerta enviada a {contacto.Nombre} ({contacto.Relacion}) en el número {contacto.Telefono}");
+                Console.WriteLine($"Alerta enviada a {contacto.FirstName} ({contacto.Parentezco}) en el número {contacto.TelefonoContacto}");
             }
         }
+
         public int GenerarID()
         {
-           
-            // Obtiene la fecha y hora actual.
+            // Obtener la fecha y hora actual.
             DateTime ahora = DateTime.Now;
 
-            // Genera un valor único 
+            // Generar un valor único.
             int valorUnico = ObtenerValorUnico();
 
-            // Combina la fecha y el valor único para generar un ID único.
+            // Combinar la fecha y el valor único para generar un ID único.
             string idUnico = ahora.ToString("yyyyMMddHHmmssfff") + valorUnico;
 
-            // Convierte el ID único a un entero
+            // Convierte el ID único a un entero.
             if (int.TryParse(idUnico, out int idEntero))
             {
                 return idEntero;
             }
 
-            // Si no se puede convertir a entero, retorna un valor predeterminado
+            // Si no se puede convertir a entero, retorna un valor predeterminado.
             return -1;
         }
 
         private int ObtenerValorUnico()
         {
-  
+
             Random random = new Random();
             return random.Next(1000, 9999); // Número aleatorio de 4 dígitos como ejemplo.
         }

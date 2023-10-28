@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-
-
-
-namespace Application
-{
+namespace Application 
+{ 
     public class Usuario
     {
       
@@ -23,11 +14,13 @@ namespace Application
             get { return firstName; }
             set { firstName = value; }
         }
+
         public string LastName
         {
             get { return lastName; }
             set { lastName = value; }
         }
+
         public string FullName
         {
             get { return $"{firstName} {lastName}"; }
@@ -45,17 +38,19 @@ namespace Application
         {
             get { return age; }
             set
-
-
-                if (age < 18)
             {
-                throw new Exception("Invalid Age");
+                if (value < 18)
+                {
+                    throw new Exception("Invalid Age");
+                }
+                else
+                {
+                    age = value;
+                }
             }
-            else
-            {
-                age = value;
-            }
+        }
     }
+
     public class Alarma
     {
         public void DetectarPeligro(Usuario usuario, string mensajePeligro)
@@ -64,14 +59,13 @@ namespace Application
             if (mensajePeligro == "Eln")
             {
                 Console.WriteLine($"¡Peligro para el usuario {usuario.FirstName}! Eln detectado.");
-
+            
             }
-            else if (mensajePeligro == "Intruso")
+            else if (mensajePeligro == "Farc")
             {
-                Console.WriteLine($"¡Peligro para el usuario {usuario.FirstName}! Farc detectados ");
-
+                Console.WriteLine($"¡Peligro para el usuario {usuario.FirstName}! Farc detectada.");
             }
-
+       
         }
     }
 }

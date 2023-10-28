@@ -19,3 +19,10 @@ C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\obj\Debug\net6.0\App
 C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\obj\Debug\net6.0\Application.dll
 C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\obj\Debug\net6.0\refint\Application.dll
 C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\obj\Debug\net6.0\Application.pdb
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\Application.exe
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\Application.deps.json
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\Application.runtimeconfig.json
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\Application.dll
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\Application.pdb
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\obj\Debug\net6.0\Application.genruntimeconfig.cache
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\obj\Debug\net6.0\ref\Application.dll

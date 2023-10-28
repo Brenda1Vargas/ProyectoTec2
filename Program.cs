@@ -1,13 +1,61 @@
-﻿using System.Reflection.Metadata;
-//Brenda Vargas Parra - 614222713 & Viviana Garcia Valderrama - 506222720
+﻿
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 using System;
+using System.Collections.Generic;
 
 namespace Application
 {
     public class Program
     {
-        //UN saludo para viviana jajajja
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         static void Main(string[] args)
         {
@@ -15,8 +63,9 @@ namespace Application
             LineaEmergencia lineaEmergencia = new LineaEmergencia(123);
             LugaresFrecuentes lugaresFrecuentes = new LugaresFrecuentes();
             Alerta alerta = new Alerta();
-            List<Persona> personas = new List<Persona>();
+            List<Usuario> usuarios = new List<Usuario>();
             List<Menor> menores = new List<Menor>();
+
             while (true)
             {
                 Console.WriteLine("************ Menú Principal **********");
@@ -73,22 +122,25 @@ namespace Application
                     case "4":
                         alerta.EnviarAlerta();
                         break;
+
                     case "5":
                         Console.Write("Nombre de la Persona: ");
                         string nombrePersona = Console.ReadLine();
                         Console.Write("Edad de la Persona: ");
                         if (int.TryParse(Console.ReadLine(), out int edadPersona))
                         {
-                            Persona nuevaPersona = new Persona(nombrePersona, edadPersona);
-                            personas.Add(nuevaPersona);
-                            Console.WriteLine("Persona agregada.");
+                            Usuario nuevoUsuario = new Usuario();
+                            nuevoUsuario.FirstName = nombrePersona;
+                            nuevoUsuario.Age = edadPersona;
+                            usuarios.Add(nuevoUsuario); // Agregar a la lista de usuarios
+                            Console.WriteLine("Usuario agregado.");
                         }
                         else
                         {
                             Console.WriteLine("Edad no válida.");
                         }
                         break;
-                    case "5":
+
 
                     case "6":
                         Console.Write("Nombre del Menor: ");
@@ -116,7 +168,7 @@ namespace Application
                         break;
 
                     case "7":
-
+                       
                         return; // Salir de la aplicación
 
                     default:
