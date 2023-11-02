@@ -21,36 +21,10 @@ namespace Application
             set { lastName = value; }
         }
 
-        public string FullName
-        {
-            get { return $"{firstName} {lastName}"; }
-        }
-
-        public int Id
-        {
-            get { return _id; }
-            set { _id = value; }
-
-        }
-
-
-        public int Age
-        {
-            get { return age; }
-            set
-            {
-                if (value < 18)
-                {
-                    Console.WriteLine("La persona es menor de edad.");
-                }
-                else
-                {
-                    Console.WriteLine("La persona es mayor de edad.");
-                }
-                age = value;
-            }
-        }
-
+    public int Id
+    {
+        get { return _id; }
+        set { _id = value; }
     }
 
 

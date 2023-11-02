@@ -1,37 +1,3 @@
-﻿
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 using System;
 using System.Collections.Generic;
 
@@ -39,24 +5,6 @@ namespace Application
 {
     public class Program
     {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         static void Main(string[] args)
         {
             Usuario firstUser = new Usuario();
@@ -140,7 +88,6 @@ namespace Application
                             Console.WriteLine("Edad no válida.");
                         }
                         break;
-
 
                     case "6":
                         Console.Write("Nombre del Menor: ");
