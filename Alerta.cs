@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
-
 namespace Application
 {
     public class Alerta
@@ -38,7 +36,6 @@ namespace Application
             get { return numero; }
             set { numero = value; }
         }
-
 
         public string TelefonoContacto
         {
