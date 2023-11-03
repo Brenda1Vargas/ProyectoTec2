@@ -12,6 +12,12 @@ namespace Application
         private string telefonoContacto;
         private List<ContactoEmergencia> contactosEmergencia;
 
+        // Nuevo campo para el mensaje de alerta
+        public string Mensaje
+        {
+            get;
+            set;
+        }
 
         public string Ubicacion
         {
@@ -54,6 +60,12 @@ namespace Application
             foreach (var contacto in contactosEmergencia)
             {
                 Console.WriteLine($"Alerta enviada a {contacto.FirstName} ({contacto.Parentezco}) en el número {contacto.TelefonoContacto}");
+
+                // Comprobar si hay un mensaje y mostrarlo
+                if (!string.IsNullOrEmpty(Mensaje))
+                {
+                    Console.WriteLine($"Mensaje: {Mensaje}");
+                }
             }
         }
 

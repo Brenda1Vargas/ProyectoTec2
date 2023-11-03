@@ -109,7 +109,16 @@ namespace Application
                         else
                         {
                             Console.WriteLine("Enviando alerta a los contactos de emergencia...");
-                            alerta.ContactosEmergencia = usuarios.Select(p => new ContactoEmergencia
+
+                            // Crear una nueva alerta
+                            Alerta nuevaAlerta = new Alerta
+                            {
+                                Ubicacion = "Ubicación de la alerta",
+                                Fecha = DateTime.Now,
+                                Mensaje = "AYUDA!!! ESTOY EN PELIGRO"
+                            };
+
+                            nuevaAlerta.ContactosEmergencia = usuarios.Select(p => new ContactoEmergencia
                             {
                                 FirstName = p.FirstName,
                                 LastName = p.LastName,
@@ -117,12 +126,12 @@ namespace Application
                                 TelefonoContacto = "Número de Teléfono"
                             }).ToList();
 
-                            alerta.Ubicacion = "Ubicación de la alerta";
-                            alerta.Fecha = DateTime.Now;
-                            alerta.EnviarAlerta();
+                            nuevaAlerta.EnviarAlerta();
                             Console.WriteLine("Alerta enviada con éxito.");
                         }
                         break;
+
+
 
                     case "5":
                         // Agregar una persona
