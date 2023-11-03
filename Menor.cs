@@ -31,6 +31,15 @@ namespace Application
             this.alerta = alerta;
         }
 
+        public Menor(string? nombreMenor, string? apellidoMenor, int edadMenor) : this(nombreMenor)
+        {
+        }
+
+        public Menor(string? nombreMenor)
+        {
+            this.nombreMenor = nombreMenor;
+        }
+
         public void DetectarPeligro(string mensajePeligro)
         {
 

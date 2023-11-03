@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Application
@@ -7,7 +7,7 @@ namespace Application
     {
         static void Main(string[] args)
         {
-            Usuario firstUser = new Usuario();
+
             LineaEmergencia lineaEmergencia = new LineaEmergencia(123);
             LugaresFrecuentes lugaresFrecuentes = new LugaresFrecuentes();
             Alerta alerta = new Alerta();
@@ -31,6 +31,7 @@ namespace Application
                 switch (opcion)
                 {
                     case "1":
+                        // Agregar un nuevo usuario
                         Console.Write("Ingrese el nombre: ");
                         string nombre = Console.ReadLine();
                         Console.Write("Ingrese el apellido: ");
@@ -39,11 +40,14 @@ namespace Application
                         int edad;
                         if (int.TryParse(Console.ReadLine(), out edad))
                         {
-                            // Crear un nuevo usuario con los datos ingresados
-                            Usuario nuevoUsuario = new Usuario();
-                            nuevoUsuario.FirstName = nombre;
-                            nuevoUsuario.LastName = apellido;
-                            nuevoUsuario.Age = edad;
+                            Usuario nuevoUsuario = new Usuario
+                            {
+                                FirstName = nombre,
+                                LastName = apellido,
+                                Age = edad
+                            };
+                            usuarios.Add(nuevoUsuario);
+                            Console.WriteLine("Usuario agregado con éxito.");
                         }
                         else
                         {
@@ -52,74 +56,128 @@ namespace Application
                         break;
 
                     case "2":
-                        lineaEmergencia.RealizarLlamadaEmergencia();
+                        // Manejar la línea de emergencia
+                        Console.Write("Ingrese el número de emergencia: ");
+                        if (int.TryParse(Console.ReadLine(), out int numeroEmergencia))
+                        {
+                            lineaEmergencia.NumeroEmergencia = numeroEmergencia;
+
+                            Console.Write("Ingrese la ubicación de emergencia: ");
+                            string ubicacionEmergencia = Console.ReadLine();
+                            lineaEmergencia.UbicacionEmergencia = ubicacionEmergencia;
+
+                            // Realizar la llamada de emergencia
+                            lineaEmergencia.RealizarLlamadaEmergencia();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Número de emergencia no válido.");
+                        }
                         break;
 
-                    case "3":
-                        Console.Write("Ingrese el nombre del lugar frecuente: ");
-                        string nombreLugar = Console.ReadLine();
-                        Console.Write("Ingrese la latitud: ");
-                        double latitud = Convert.ToDouble(Console.ReadLine());
-                        Console.Write("Ingrese la longitud: ");
-                        double longitud = Convert.ToDouble(Console.ReadLine());
 
-                        // Agregar el lugar frecuente a la lista de lugares frecuentes
-                        lugaresFrecuentes.AgregarLugar(nombreLugar, latitud, longitud);
+                    case "3":
+                        // Gestionar lugares frecuentes
+                        Console.Write("Ingrese un lugar frecuente: ");
+                        string lugarFrecuente = Console.ReadLine();
+                        Console.Write("Ingrese la latitud: ");
+                        if (double.TryParse(Console.ReadLine(), out double latitud))
+                        {
+                            Console.Write("Ingrese la longitud: ");
+                            if (double.TryParse(Console.ReadLine(), out double longitud))
+                            {
+                                lugaresFrecuentes.AgregarLugar(lugarFrecuente, latitud, longitud);
+                                Console.WriteLine($"Lugar frecuente '{lugarFrecuente}' agregado con éxito.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Longitud no válida.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Latitud no válida.");
+                        }
                         break;
 
                     case "4":
-                        alerta.EnviarAlerta();
+                        // Enviar alerta
+                        if (usuarios.Count == 0)
+                        {
+                            Console.WriteLine("No se pueden enviar alertas, no hay usuarios registrados.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Enviando alerta a los contactos de emergencia...");
+                            alerta.ContactosEmergencia = usuarios.Select(p => new ContactoEmergencia
+                            {
+                                FirstName = p.FirstName,
+                                LastName = p.LastName,
+                                Parentezco = "Familiar",
+                                TelefonoContacto = "Número de Teléfono"
+                            }).ToList();
+
+                            alerta.Ubicacion = "Ubicación de la alerta";
+                            alerta.Fecha = DateTime.Now;
+                            alerta.EnviarAlerta();
+                            Console.WriteLine("Alerta enviada con éxito.");
+                        }
                         break;
 
                     case "5":
-                        Console.Write("Nombre de la Persona: ");
+                        // Agregar una persona
+                        Console.Write("Ingrese el nombre de la persona: ");
                         string nombrePersona = Console.ReadLine();
-                        Console.Write("Edad de la Persona: ");
-                        if (int.TryParse(Console.ReadLine(), out int edadPersona))
+                        Console.Write("Ingrese el apellido de la persona: ");
+                        string apellidoPersona = Console.ReadLine();
+                        Console.Write("Ingrese la edad de la persona: ");
+                        int edadPersona;
+                        if (int.TryParse(Console.ReadLine(), out edadPersona))
                         {
-                            Usuario nuevoUsuario = new Usuario();
-                            nuevoUsuario.FirstName = nombrePersona;
-                            nuevoUsuario.Age = edadPersona;
-                            usuarios.Add(nuevoUsuario); // Agregar a la lista de usuarios
-                            Console.WriteLine("Usuario agregado.");
+                            Usuario nuevaPersona = new Usuario
+                            {
+                                FirstName = nombrePersona,
+                                LastName = apellidoPersona,
+                                Age = edadPersona
+                            };
+                            usuarios.Add(nuevaPersona);
+                            Console.WriteLine("Persona agregada con éxito.");
                         }
                         else
                         {
-                            Console.WriteLine("Edad no válida.");
+                            Console.WriteLine("La edad ingresada no es válida.");
                         }
                         break;
 
-                    case "6":
-                        Console.Write("Nombre del Menor: ");
-                        string nombreMenor = Console.ReadLine();
-                        Console.Write("Edad del Menor: ");
-                        if (int.TryParse(Console.ReadLine(), out int edadMenor))
-                        {
-                            Console.Write("Nombre del Lugar Frecuente del Menor: ");
-                            string nombreLugarMenor = Console.ReadLine();
-                            Console.Write("Latitud del Lugar Frecuente: ");
-                            double latitudLugarMenor = Convert.ToDouble(Console.ReadLine());
-                            Console.Write("Longitud del Lugar Frecuente: ");
-                            double longitudLugarMenor = Convert.ToDouble(Console.ReadLine());
+case "6":
+    // Agregar un menor
+    Console.Write("Ingrese el nombre del menor: ");
+    string nombreMenor = Console.ReadLine();
+    Console.Write("Ingrese el apellido del menor: ");
+    string apellidoMenor = Console.ReadLine();
+    Console.Write("Ingrese la edad del menor: ");
+    int edadMenor;
+    if (int.TryParse(Console.ReadLine(), out edadMenor))
+    {
+        Menor nuevoMenor = new Menor(nombreMenor, apellidoMenor, edadMenor);
+        menores.Add(nuevoMenor);
+        Console.WriteLine("Menor agregado con éxito.");
+    }
+    else
+    {
+        Console.WriteLine("La edad ingresada no es válida.");
+    }
+    break;
 
-                            LugaresFrecuentes lugarMenor = new LugaresFrecuentes(nombreLugarMenor, latitudLugarMenor, longitudLugarMenor);
-
-                            Menor nuevoMenor = new Menor(nombreMenor, edadMenor, lugarMenor, alerta);
-                            menores.Add(nuevoMenor);
-                            Console.WriteLine("Menor agregado.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Edad no válida.");
-                        }
-                        break;
 
                     case "7":
-                       
-                        return; // Salir de la aplicación
+                        // Salir del programa
+                        Console.WriteLine("Saliendo del programa.");
+                        Environment.Exit(0);
+                        break;
 
                     default:
-                        Console.WriteLine("Opción no válida. Intente nuevamente.");
+                        Console.WriteLine("Opción no válida. Por favor, seleccione una opción válida.");
                         break;
                 }
             }

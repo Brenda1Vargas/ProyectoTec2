@@ -1,25 +1,26 @@
-﻿using System;
-namespace Application 
-{ 
-    public class Usuario
+﻿public class Usuario
+{
+    private string firstName;
+    private string lastName;
+    private int age;
+    private int _id;
+
+    public string FirstName
     {
-      
-        private string firstName;
-        private string lastName;
-        private int age;
-        private int _id;
+        get { return firstName; }
+        set { firstName = value; }
+    }
 
-        public string FirstName
-        {
-            get { return firstName; }
-            set { firstName = value; }
-        }
+    public string LastName
+    {
+        get { return lastName; }
+        set { lastName = value; }
+    }
 
-        public string LastName
-        {
-            get { return lastName; }
-            set { lastName = value; }
-        }
+    public string FullName
+    {
+        get { return $"{firstName} {lastName}"; }
+    }
 
     public int Id
     {
@@ -27,23 +28,9 @@ namespace Application
         set { _id = value; }
     }
 
-
-
-    public class Alarma
+    public int Age
     {
-        public void DetectarPeligro(Usuario usuario, string mensajePeligro)
-        {
-
-            if (mensajePeligro == "Eln")
-            {
-                Console.WriteLine($"¡Peligro para el usuario {usuario.FirstName}! Eln detectado.");
-            
-            }
-            else if (mensajePeligro == "Farc")
-            {
-                Console.WriteLine($"¡Peligro para el usuario {usuario.FirstName}! Farc detectada.");
-            }
-       
-        }
+        get { return age; }
+        set { age = value; }
     }
 }

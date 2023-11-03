@@ -7,6 +7,7 @@ namespace Application
     public class LineaEmergencia
     {
         private int numeroEmergencia;
+        private string ubicacionEmergencia;
 
         public int NumeroEmergencia
         {
@@ -14,20 +15,32 @@ namespace Application
             set { numeroEmergencia = value; }
         }
 
+        public string UbicacionEmergencia
+        {
+            get { return ubicacionEmergencia; }
+            set { ubicacionEmergencia = value; }
+        }
+
         public LineaEmergencia(int numeroEmergencia)
         {
             this.numeroEmergencia = numeroEmergencia;
+            this.ubicacionEmergencia = ""; // Inicializamos la ubicación vacía
         }
 
         public void RealizarLlamadaEmergencia()
         {
-            Console.WriteLine($"Realizando llamada de emergencia al número {NumeroEmergencia}...");
-
-            Thread.Sleep(3000);
-
-            Console.WriteLine("Llamada de emergencia completada.");
+            if (!string.IsNullOrEmpty(ubicacionEmergencia))
+            {
+                Console.WriteLine($"Realizando llamada de emergencia al número {NumeroEmergencia}...");
+                Console.WriteLine($"Ubicación: {UbicacionEmergencia}");
+                // Simulación de llamada (sleep)
+                System.Threading.Thread.Sleep(3000);
+                Console.WriteLine("Llamada de emergencia completada.");
+            }
+            else
+            {
+                Console.WriteLine("Ubicación de emergencia no definida. No se puede realizar la llamada.");
+            }
         }
     }
-
-
 }
