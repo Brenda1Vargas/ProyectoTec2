@@ -151,26 +151,6 @@ namespace Application
                         }
                         break;
 
-case "6":
-    // Agregar un menor
-    Console.Write("Ingrese el nombre del menor: ");
-    string nombreMenor = Console.ReadLine();
-    Console.Write("Ingrese el apellido del menor: ");
-    string apellidoMenor = Console.ReadLine();
-    Console.Write("Ingrese la edad del menor: ");
-    int edadMenor;
-    if (int.TryParse(Console.ReadLine(), out edadMenor))
-    {
-        Menor nuevoMenor = new Menor(nombreMenor, apellidoMenor, edadMenor);
-        menores.Add(nuevoMenor);
-        Console.WriteLine("Menor agregado con éxito.");
-    }
-    else
-    {
-        Console.WriteLine("La edad ingresada no es válida.");
-    }
-    break;
-
 
                     case "7":
                         // Salir del programa
