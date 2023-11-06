@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application.Data.FirestoreModels;
+using System;
 using System.Collections.Generic;
 
 namespace Application
@@ -7,8 +8,14 @@ namespace Application
     {
         static void Main(string[] args)
         {
+
+            LineaEmergencia lineaEmergencia = new LineaEmergencia(123);
+            LugaresFrecuentes lugaresFrecuentes = new LugaresFrecuentes();
+            Alerta alerta = new Alerta();
             List<Usuario> usuarios = new List<Usuario>();
             List<Menor> menores = new List<Menor>();
+            List<Mayor> mayores = new List<Mayor>();
+
 
             while (true)
             {
@@ -17,7 +24,7 @@ namespace Application
                 Console.WriteLine("2. Línea de Emergencia");
                 Console.WriteLine("3. Gestionar Lugares Frecuentes");
                 Console.WriteLine("4. Enviar Alerta");
-                Console.WriteLine("5. Agregar Persona");
+                Console.WriteLine("5. Agregar Mayor");
                 Console.WriteLine("6. Agregar Menor");
                 Console.WriteLine("7. Salir");
                 Console.Write("Seleccione una opción: ");
@@ -70,6 +77,7 @@ namespace Application
                             Console.WriteLine("Número de emergencia no válido.");
                         }
                         break;
+
 
                     case "3":
                         // Gestionar lugares frecuentes
@@ -126,24 +134,44 @@ namespace Application
                         }
                         break;
 
+
                     case "5":
-                        // Agregar una persona
+                        // Agregar un mayor
                         Console.Write("Ingrese el nombre de la persona: ");
-                        string nombrePersona = Console.ReadLine();
+                        string nombreMayor = Console.ReadLine();
                         Console.Write("Ingrese el apellido de la persona: ");
-                        string apellidoPersona = Console.ReadLine();
+                        string apellidoMayor = Console.ReadLine();
                         Console.Write("Ingrese la edad de la persona: ");
-                        int edadPersona;
-                        if (int.TryParse(Console.ReadLine(), out edadPersona))
+                        int edadMayor;
+                        if (int.TryParse(Console.ReadLine(), out edadMayor))
                         {
-                            Usuario nuevaPersona = new Usuario
+                            Mayor nuevoMayor = new Mayor
                             {
-                                FirstName = nombrePersona,
-                                LastName = apellidoPersona,
-                                Age = edadPersona
+                                FirstName = nombreMayor,
+                                LastName = apellidoMayor,
+                                Age = edadMayor
                             };
-                            usuarios.Add(nuevaPersona);
-                            Console.WriteLine("Persona agregada con éxito.");
+                            mayores.Add(nuevoMayor);
+                            Console.WriteLine("Mayor agregado con éxito.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("La edad ingresada no es válida.");
+                        }
+                        break;
+                    case "6":
+                        // Agregar un menor
+                        Console.Write("Ingrese el nombre del menor: ");
+                        string nombreMenor = Console.ReadLine();
+                        Console.Write("Ingrese el apellido del menor: ");
+                        string apellidoMenor = Console.ReadLine();
+                        Console.Write("Ingrese la edad del menor: ");
+                        int edadMenor;
+                        if (int.TryParse(Console.ReadLine(), out edadMenor))
+                        {
+                            Menor nuevoMenor = new Menor(nombreMenor, apellidoMenor, edadMenor);
+                            menores.Add(nuevoMenor);
+                            Console.WriteLine("Menor agregado con éxito.");
                         }
                         else
                         {
