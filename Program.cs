@@ -7,10 +7,6 @@ namespace Application
     {
         static void Main(string[] args)
         {
-
-            LineaEmergencia lineaEmergencia = new LineaEmergencia(123);
-            LugaresFrecuentes lugaresFrecuentes = new LugaresFrecuentes();
-            Alerta alerta = new Alerta();
             List<Usuario> usuarios = new List<Usuario>();
             List<Menor> menores = new List<Menor>();
 
@@ -75,7 +71,6 @@ namespace Application
                         }
                         break;
 
-
                     case "3":
                         // Gestionar lugares frecuentes
                         Console.Write("Ingrese un lugar frecuente: ");
@@ -130,8 +125,6 @@ namespace Application
                             Console.WriteLine("Alerta enviada con éxito.");
                         }
                         break;
-
-
 
                     case "5":
                         // Agregar una persona
