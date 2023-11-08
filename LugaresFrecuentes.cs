@@ -8,12 +8,6 @@ namespace Application
     {
         private string nombre;
         private double latitud;
-        private double longitud;
-        private List<LugarFrecuente> lugares = new List<LugarFrecuente>();
-
-        public LugaresFrecuentes()
-        {
-        }
 
         public string Nombre
         {
