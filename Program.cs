@@ -10,7 +10,7 @@ namespace Application
         {
 
             LineaEmergencia lineaEmergencia = new LineaEmergencia(123);
-            LugaresFrecuentes lugaresFrecuentes = new LugaresFrecuentes();
+            Ubicacion lugaresFrecuentes = new Ubicacion();
             Alerta alerta = new Alerta();
             List<Usuario> usuarios = new List<Usuario>();
             List<Menor> menores = new List<Menor>();
@@ -25,7 +25,7 @@ namespace Application
                 Console.WriteLine("3. Gestionar Lugares Frecuentes");
                 Console.WriteLine("4. Enviar Alerta");
                 Console.WriteLine("5. Agregar Mayor");
-                Console.WriteLine("6. Agregar Menor");
+                Console.WriteLine("6. Agregar Menor");  
                 Console.WriteLine("7. Salir");
                 Console.Write("Seleccione una opción: ");
 
@@ -89,7 +89,7 @@ namespace Application
                             Console.Write("Ingrese la longitud: ");
                             if (double.TryParse(Console.ReadLine(), out double longitud))
                             {
-                                lugaresFrecuentes.AgregarLugar(lugarFrecuente, latitud, longitud);
+                                //lugaresFrecuentes.AgregarLugar(lugarFrecuente, latitud, longitud);
                                 Console.WriteLine($"Lugar frecuente '{lugarFrecuente}' agregado con éxito.");
                             }
                             else

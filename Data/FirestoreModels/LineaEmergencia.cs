@@ -8,19 +8,16 @@ using System.Threading.Tasks;
 namespace Application.Data.FirestoreModels
 {
     [FirestoreData]
-    public class Menor
+    public class LineaEmergencia
     {
         [FirestoreDocumentId]
-        public string Id { get; set; }
+        public string id { get; set; }
 
         [FirestoreProperty]
-        public Alerta AlarmaEmergencia { get; set; }
+        public int numeroEmergencia { get; set; }
 
         [FirestoreProperty]
-        public double LatitudHogar { get; set; }
+        public string ubicacionEmergencia { get; set; }
 
-        [FirestoreProperty]
-        public double LongitudHogar { get; set; }
-
-    }
+        }
 }

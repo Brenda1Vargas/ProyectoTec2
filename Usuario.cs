@@ -6,6 +6,25 @@ namespace Application
     public class Usuario
     {
         private string _id;
+        private string firstName;
+        private string lastName;
+        private int age;
+        private Ubicacion _ubicacionActual;
+        private List<Ubicacion> _lugarFrecuentes;
+        private List<ContactoEmergencia> _contactoEmergencia;
+
+        public List<Ubicacion> LugaresFrecuentes
+        {
+            get { return _lugarFrecuentes; }
+            set { _lugarFrecuentes = value; }        }
+
+        public List<ContactoEmergencia> ContactoEmergencia
+        {
+            get { return _contactoEmergencia; }
+            set { _contactoEmergencia = value; }
+        }
+
+
         public string Id
         {
             get { return _id; }
@@ -26,6 +45,8 @@ namespace Application
             get { return age; }
             set { age = value; }
         }
+
+        public Ubicacion UbicacionActual { get => _ubicacionActual; set => _ubicacionActual = value; }
 
         public Usuario(string id, string firstName, string lastName, int age)
         {

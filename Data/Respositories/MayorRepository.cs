@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,16 @@ namespace Application.Data.Respositories
 
         public void Delete(string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                MessageLogger.LogInformationMessage($"Deleting... {id}");
+
+                MessageLogger.LogInformationMessage($"Succes delete... {id}");
+            }
+            catch (Exception ex) { 
+                MessageLogger.LogErrorMessage(ex);
+                throw;
+            }
         }
 
         public List<Mayor> FindAll()
@@ -45,7 +55,6 @@ namespace Application.Data.Respositories
         {
             return new FirestoreModels.Mayor
             {
-                UbicacionActual = entity.UbicacionActual,
                 AlarmaEmergencia = entity.AlarmaEmergencia,
                 LatitudHogar = entity.LatitudHogar,
                 LongitudHogar = entity.LongitudHogar
@@ -54,10 +63,8 @@ namespace Application.Data.Respositories
         }
         private Mayor MapFirebaseModelToEntity(FirestoreModels.Mayor model)
         {
-            return new Mayor(model.UbicacionActual, model.AlarmaEmergencia, model.LatitudHogar, model.LongitudHogar);
-        }
-
-    
+            return new Mayor(model.AlarmaEmergencia, model.LatitudHogar, model.LongitudHogar);
+        }   
     }
 }
 

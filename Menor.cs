@@ -6,32 +6,28 @@ namespace Application
     {
         private string nombreMenor;
         private int edadMenor;
-        private LugaresFrecuentes lugarMenor;
         private Alerta alerta;
 
-        public LugaresFrecuentes UbicacionActual { get; set; }
         public Alerta AlarmaEmergencia { get; set; }
         public double LatitudHogar { get; set; }
         public double LongitudHogar { get; set; }
 
 
-        public Menor(string nombre, int edad, LugaresFrecuentes ubicacionActual, Alerta alarmaEmergencia, double latitudHogar, double longitudHogar)
+        public Menor(string nombre, int edad, Alerta alarmaEmergencia, double latitudHogar, double longitudHogar)
         {
             FirstName = nombre;
             Age = edad;
-            UbicacionActual = ubicacionActual;
             AlarmaEmergencia = alarmaEmergencia;
         }
 
-        public Menor(string nombreMenor, int edadMenor, LugaresFrecuentes lugarMenor, Alerta alerta)
+        public Menor(string nombreMenor, int edadMenor, Alerta alerta)
         {
             this.nombreMenor = nombreMenor;
             this.edadMenor = edadMenor;
-            this.lugarMenor = lugarMenor;
             this.alerta = alerta;
         }
 
-        public Menor(string? nombreMenor, string? apellidoMenor, int edadMenor) : this(nombreMenor)
+        public Menor( string? nombreMenor, string? apellidoMenor, int edadMenor) : this(nombreMenor)
         {
         }
 
@@ -39,6 +35,16 @@ namespace Application
         {
             this.nombreMenor = nombreMenor;
         }
+
+        public Menor( Alerta alarmaEmergencia, double latitudHogar, double longitudHogar)
+        {
+      
+            AlarmaEmergencia = alarmaEmergencia;
+            LatitudHogar = latitudHogar;
+            LongitudHogar = longitudHogar;
+        }
+
+
 
         public void DetectarPeligro(string mensajePeligro)
         {

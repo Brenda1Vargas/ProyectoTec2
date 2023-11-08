@@ -11,7 +11,7 @@ namespace Application.Data.FirestoreModels
     public class Mayor
     {
         [FirestoreDocumentId]
-        public LugaresFrecuentes UbicacionActual { get; set; }
+        public string Id { get; set; } 
 
         [FirestoreProperty]
         public Alerta AlarmaEmergencia { get; set; }
