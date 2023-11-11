@@ -13,9 +13,9 @@ namespace Application.Data
 
         public Connection()
         {
-            var filePath = @"Data\ejemploescuela-57cc9-firebase-adminsdk-wmst1-0016870e86";
+            var filePath = @"Data\ejemploescuela-57cc9-firebase-adminsdk-wmst1-0016870e86.json";
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filePath);
-            FirestoreDb = FirestoreDb.Create("ejemploescuela-57cc9\r\n");
+            FirestoreDb = FirestoreDb.Create("ejemploescuela-57cc9");
 
         }
     }   

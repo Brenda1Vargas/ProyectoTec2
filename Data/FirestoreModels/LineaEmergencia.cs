@@ -11,10 +11,10 @@ namespace Application.Data.FirestoreModels
     public class LineaEmergencia
     {
         [FirestoreDocumentId]
-        public string id { get; set; }
+        public string Id { get; set; }
 
         [FirestoreProperty]
-        public int numeroEmergencia { get; set; }
+        public string numeroEmergencia { get; set; }
 
         [FirestoreProperty]
         public string ubicacionEmergencia { get; set; }

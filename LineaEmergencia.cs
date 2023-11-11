@@ -7,10 +7,10 @@ namespace Application
     public class LineaEmergencia
     {
         private string id;
-        private int numeroEmergencia;
+        private string numeroEmergencia;
         private string ubicacionEmergencia;
 
-        public int NumeroEmergencia
+        public string NumeroEmergencia
         {
             get { return numeroEmergencia; }
             set { numeroEmergencia = value; }
@@ -33,18 +33,19 @@ namespace Application
                 
         }
 
-        public LineaEmergencia(int numeroEmergencia)
+        public LineaEmergencia(string numeroEmergencia)
         {
             this.numeroEmergencia = numeroEmergencia;
             this.ubicacionEmergencia = ""; // Inicializamos la ubicación vacía
         }
 
-        public LineaEmergencia(string id, int numeroEmergencia, string ubicacionEmergencia)
+        public LineaEmergencia(string id, string numeroEmergencia, string ubicacionEmergencia)
         {
             this.id = id;
             this.numeroEmergencia = numeroEmergencia;
             this.ubicacionEmergencia = ubicacionEmergencia;
         }
+
 
         public void RealizarLlamadaEmergencia()
         {
