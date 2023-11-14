@@ -69,7 +69,7 @@ namespace Application.Data.Respositories
         public LineaEmergencia FindById(string id)
         {
             throw new Exception();
-            /* try
+             try
              {
                  MessageLogger.LogInformationMessage($"FindById... {id}");
 
@@ -79,7 +79,7 @@ namespace Application.Data.Respositories
              {
                  MessageLogger.LogErrorMessage(ex);
                  throw;
-             }*/
+             }
         }
 
         public void Insert(LineaEmergencia entity)
