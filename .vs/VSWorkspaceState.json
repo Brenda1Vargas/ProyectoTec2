@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Data",
+    "\\Data\\Respositories"
   ],
   "SelectedNode": "\\Program.cs",
   "PreviewInSolutionExplorer": false

@@ -19,5 +19,5 @@ namespace Application.Data.FirestoreModels
         [FirestoreProperty]
         public string ubicacionEmergencia { get; set; }
 
-        }
+    }
 }

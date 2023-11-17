@@ -10,14 +10,14 @@ namespace Application
     {
         static void Main(string[] args)
         {
-            Console.Write("------Create...");
+            Console.WriteLine("------Create...");
             Connection dbConn = new Connection();
             LineaEmergenciaRepository lineaEmergenciaRepo = new LineaEmergenciaRepository(dbConn);
-            LineaEmergencia lineaEmergencia = new LineaEmergencia(string.Empty, "filePath", "23344444");
+            LineaEmergencia lineaEmergencia = new LineaEmergencia(string.Empty, "1234", "Bogotaa");
 
             lineaEmergenciaRepo.Insert(lineaEmergencia);
 
-            Console.Write("------findAll...");
+            Console.WriteLine("------findAll...");
 
             var all = lineaEmergenciaRepo.FindAll();
 
@@ -25,7 +25,28 @@ namespace Application
             {
                 Console.WriteLine($"{item.Id}{item.NumeroEmergencia} {item.UbicacionEmergencia}");
             }
-            
+
+            Console.WriteLine("------Find by id");
+
+            var oneEntity = lineaEmergenciaRepo.FindById(all.First().Id);
+            Console.WriteLine($"{oneEntity.Id} {oneEntity.NumeroEmergencia} {oneEntity.UbicacionEmergencia} {oneEntity.RealizarLlamadaEmergencia}");
+
+            Console.WriteLine("------Delete");
+
+            lineaEmergenciaRepo.Delete(all.First().Id);
+
+
+            Console.WriteLine("------Update");
+
+            Class updatedLineaEmergencia = all.Last();
+            updatedLineaEmergencia.numeroEmergencia = "123";
+            updatedLineaEmergencia.num = 123;
+
+            lineaEmergenciaRepo.Update(updatedLineaEmergencia);
+
+            Console.WriteLine("Presiona una tecla para salir...");
+            Console.ReadKey();
+
 
             /*
                         LineaEmergencia lineaEmergencia = new LineaEmergencia(123);
