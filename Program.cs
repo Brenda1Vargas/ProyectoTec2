@@ -9,7 +9,8 @@ namespace Application
     public class Program
     {
         static void Main(string[] args)
-        {
+
+        {            
             Console.WriteLine("------Create...");
             Connection dbConn = new Connection();
             LineaEmergenciaRepository lineaEmergenciaRepo = new LineaEmergenciaRepository(dbConn);
@@ -32,20 +33,18 @@ namespace Application
             Console.WriteLine($"{oneEntity.Id} {oneEntity.NumeroEmergencia} {oneEntity.UbicacionEmergencia} {oneEntity.RealizarLlamadaEmergencia}");
 
             Console.WriteLine("------Delete");
-
             lineaEmergenciaRepo.Delete(all.First().Id);
 
 
             Console.WriteLine("------Update");
 
-            Class updatedLineaEmergencia = all.Last();
-            updatedLineaEmergencia.numeroEmergencia = "123";
-            updatedLineaEmergencia.num = 123;
+            LineaEmergencia updatedLineaEmergencia = all.Last();
+            updatedLineaEmergencia.NumeroEmergencia = "123";
+            updatedLineaEmergencia.UbicacionEmergencia = "Cali";
 
             lineaEmergenciaRepo.Update(updatedLineaEmergencia);
 
-            Console.WriteLine("Presiona una tecla para salir...");
-            Console.ReadKey();
+
 
 
             /*

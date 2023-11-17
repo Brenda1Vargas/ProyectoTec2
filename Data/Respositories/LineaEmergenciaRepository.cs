@@ -119,7 +119,6 @@ namespace Application.Data.Respositories
 
         public LineaEmergencia Update(LineaEmergencia entity)
         {
-            throw new Exception();
             try
             {
                 MessageLogger.LogInformationMessage($"Insert... {entity.Id}");
@@ -128,7 +127,7 @@ namespace Application.Data.Respositories
                 var fbModel = MapEntityToFirestoremodel(entity);
                 recordRef.SetAsync(fbModel, SetOptions.MergeAll).ConfigureAwait(false).GetAwaiter().GetResult();
                 MessageLogger.LogInformationMessage($"Success Insert... {entity.NumeroEmergencia}");
-                
+
                 return entity;
             }
             catch (Exception ex)
