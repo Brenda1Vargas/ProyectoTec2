@@ -7,20 +7,17 @@ using System.Threading.Tasks;
 
 namespace Application.Data.FirestoreModels
 {
+
     [FirestoreData]
-    public class Menor : Usuario
+    public class Ubicacion
     {
         [FirestoreDocumentId]
         public string Id { get; set; }
-
         [FirestoreProperty]
-        public Alerta AlarmaEmergencia { get; set; }
-
+        public string Nombre { get; set; }
         [FirestoreProperty]
-        public double LatitudHogar { get; set; }
-
+        public double Latitud { get; set; }
         [FirestoreProperty]
-        public double LongitudHogar { get; set; }
-
+        public double Longitud { get; set; }
     }
 }

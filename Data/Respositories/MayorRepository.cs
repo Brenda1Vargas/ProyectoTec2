@@ -63,6 +63,8 @@ namespace Application.Data.Respositories
         }
         private Mayor MapFirebaseModelToEntity(FirestoreModels.Mayor model)
         {
+            var alarmaEmergencia = new Alerta();
+
             return new Mayor(model.AlarmaEmergencia, model.LatitudHogar, model.LongitudHogar);
         }   
     }

@@ -6,6 +6,7 @@ namespace Application
 
     public class Ubicacion
     {
+        private string id;
         private double longitud;
         private string nombre;
         private double latitud;
@@ -28,6 +29,8 @@ namespace Application
             get { return longitud; }
             set { longitud = value; }
         }
+
+        public string Id { get => id; set => id = value; }
 
         public Ubicacion()
         {

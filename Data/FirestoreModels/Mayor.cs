@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Application.Data.FirestoreModels
 {
     [FirestoreData]
-    public class Mayor
+    public class Mayor : Usuario
     {
         [FirestoreDocumentId]
         public string Id { get; set; } 
