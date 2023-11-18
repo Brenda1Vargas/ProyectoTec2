@@ -44,6 +44,8 @@ namespace Application
 
             lineaEmergenciaRepo.Update(updatedLineaEmergencia);
 
+            Console.ReadLine();
+
 
 
 
