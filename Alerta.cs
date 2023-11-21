@@ -5,6 +5,7 @@ namespace Application
 {
     public class Alerta
     {
+        private string id;
         private string ubicacion;
         private DateTime fecha;
         private int hora;
@@ -53,6 +54,12 @@ namespace Application
         {
             get { return contactosEmergencia; }
             set { contactosEmergencia = value; }
+        }
+
+        public string Id
+        {
+            get { return id; }
+            set { id = value; }
         }
 
         public void EnviarAlerta()

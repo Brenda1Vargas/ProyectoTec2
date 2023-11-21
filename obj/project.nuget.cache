@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "OAqQK72JNTiihIlCip2L6JKd2E8CCM+7v/N8ep7+JponxhJ+OzRceBVIXRPKQlZR+aPwF1Wbr9kbyOCd1w32QA==",
+  "dgSpecHash": "oJtmsDsTIbdgx+Ubr+WEnqxFoFNVHykAz+uN0++KE7+3VtxQh8dwN0T5dVbCxakmS0ZqKQduGatapH8IORezIQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\vivia\\OneDrive\\Desktop\\TECNICAS 2\\Alarm\\TEC2-2-APP\\Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\vivia\\.nuget\\packages\\cef.redist.x64\\119.4.3\\cef.redist.x64.119.4.3.nupkg.sha512",
+    "C:\\Users\\vivia\\.nuget\\packages\\cef.redist.x86\\119.4.3\\cef.redist.x86.119.4.3.nupkg.sha512",
+    "C:\\Users\\vivia\\.nuget\\packages\\cefsharp.common\\119.4.30\\cefsharp.common.119.4.30.nupkg.sha512",
     "C:\\Users\\vivia\\.nuget\\packages\\google.api.commonprotos\\2.10.0\\google.api.commonprotos.2.10.0.nupkg.sha512",
     "C:\\Users\\vivia\\.nuget\\packages\\google.api.gax\\4.4.0\\google.api.gax.4.4.0.nupkg.sha512",
     "C:\\Users\\vivia\\.nuget\\packages\\google.api.gax.grpc\\4.4.0\\google.api.gax.grpc.4.4.0.nupkg.sha512",

@@ -2,6 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\Data",
+    "\\Data\\FirestoreModels",
     "\\Data\\Respositories"
   ],
   "SelectedNode": "\\Program.cs",

@@ -13,7 +13,7 @@ namespace Application.Data.FirestoreModels
     public class ContactoEmergencia
     {
         [FirestoreDocumentId]
-        public int Id { get; set; }
+        public string Id { get; set; }
         [FirestoreProperty]
 
         public int Age { get; set; }

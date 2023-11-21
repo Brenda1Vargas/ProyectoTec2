@@ -5,14 +5,25 @@ namespace Application
     public class ContactoEmergencia
     {
         private int age;
-        private int _id;
+        private string  _id;
         private string firstName;
         private string lastName;
         private string email;
         private string parentezco;
         private string telefonoContacto;
 
-        public int Id
+        public ContactoEmergencia(string id, int age, string firstName, string lastName, string email, string parentezco, string telefonoContacto)
+        {
+            Id = id;
+            this.age = age;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+            this.parentezco = parentezco;
+            this.telefonoContacto = telefonoContacto;
+        }
+
+        public string Id
         {
             get { return _id; }
             set { _id = value; }

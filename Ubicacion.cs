@@ -32,9 +32,13 @@ namespace Application
 
         public string Id { get => id; set => id = value; }
 
-        public Ubicacion()
+        public Ubicacion(string id)
         {
                 
+        }
+
+        public Ubicacion(string id, double longitud, string nombre, double latitud) : this(id)
+        {
         }
     }
 }

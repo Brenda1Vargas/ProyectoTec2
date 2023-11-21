@@ -1,6 +1,7 @@
 ﻿using Application.Data;
 using Application.Data.FirestoreModels;
 using Application.Data.Respositories;
+using Google.Cloud.Firestore;
 using System;
 using System.Collections.Generic;
 
@@ -10,7 +11,7 @@ namespace Application
     {
         static void Main(string[] args)
 
-        {            
+        {
             Console.WriteLine("------Create...");
             Connection dbConn = new Connection();
             LineaEmergenciaRepository lineaEmergenciaRepo = new LineaEmergenciaRepository(dbConn);
@@ -47,6 +48,16 @@ namespace Application
             Console.ReadLine();
 
 
+            // ----------------  Zona ubicacion-------------------------//
+
+          /* Console.WriteLine("------Create...");
+
+            LineaEmergenciaRepository UbicacionRepo = new UbicacionRepository(dbConn);
+            Ubicacion ubicacion = new Ubicacion(string.Empty, "Colombia", "Medellin");
+
+             UbicacionRepo.Insert(ubicacion);
+
+            */
 
 
             /*
