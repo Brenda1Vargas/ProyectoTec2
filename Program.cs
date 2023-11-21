@@ -21,8 +21,8 @@ namespace Application
             AlertaRepository alertaRepo = new AlertaRepository(dbConn);
 
 
-            LineaEmergencia lineaEmergencia = new LineaEmergencia(string.Empty, "1234", "Bogotaa");
-            lineaEmergenciaRepo.Insert(lineaEmergencia);
+           /* LineaEmergencia lineaEmergencia = new LineaEmergencia(string.Empty, "1234", "Bogotaa");
+            lineaEmergenciaRepo.Insert(lineaEmergencia);*/
 
             Console.WriteLine("------findAll...");
 
@@ -62,7 +62,7 @@ namespace Application
 
 
 
-            Console.WriteLine("------Delete");
+            /*Console.WriteLine("------Delete");
             lineaEmergenciaRepo.Delete(all.First().Id);
 
 
@@ -74,10 +74,27 @@ namespace Application
 
             lineaEmergenciaRepo.Update(updatedLineaEmergencia);
 
-            Console.ReadLine();
+            Console.ReadLine();*/
 
 
             // ----------------  Zona ubicacion-------------------------//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             /*Console.WriteLine("------Create...");
               Ubicacion ubicacion = new Ubicacion(double.Empty, "1234", "Bogotaa");

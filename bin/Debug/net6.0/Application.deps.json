@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v6.0": {
       "Application/1.0.0": {
         "dependencies": {
-          "Google.Cloud.Firestore": "3.4.0"
+          "Google.Cloud.Firestore": "3.4.0",
+          "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
           "Application.dll": {}
