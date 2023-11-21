@@ -5,6 +5,7 @@ namespace Application
 {
     public class Alerta
     {
+        private string mensaje;
         private string id;
         private string ubicacion;
         private DateTime fecha;
@@ -13,11 +14,14 @@ namespace Application
         private string telefonoContacto;
         private List<ContactoEmergencia> contactosEmergencia;
 
-        // Nuevo campo para el mensaje de alerta
+        public Alerta()
+        {
+            
+        }
         public string Mensaje
         {
-            get;
-            set;
+            get { return mensaje; }
+            set { mensaje = value; }
         }
 
         public string Ubicacion

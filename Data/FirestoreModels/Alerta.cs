@@ -17,14 +17,13 @@ namespace Application.Data.FirestoreModels
         [FirestoreProperty]
         public string Ubicacion { get; set; }
         [FirestoreProperty]
-        public DateTime Fecha { get; set; }
-        [FirestoreProperty]
         public int Hora { get; set; }
+        [FirestoreProperty]
+        public DateTime Fecha { get; set; }
         [FirestoreProperty]
         public int Numero { get; set; }
         [FirestoreProperty]
         public string TelefonoContacto { get; set; }
-        [FirestoreProperty]
-        public List<ContactoEmergencia> ContactosEmergencia { get; set; }
+        public List<ContactoEmergencia> ContactosEmergencia { get => ContactosEmergencia; set => ContactosEmergencia = value; }
     }
 }

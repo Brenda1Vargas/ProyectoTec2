@@ -12,6 +12,11 @@ namespace Application
         private string parentezco;
         private string telefonoContacto;
 
+
+        public ContactoEmergencia()
+        {
+            
+        }
         public ContactoEmergencia(string id, int age, string firstName, string lastName, string email, string parentezco, string telefonoContacto)
         {
             Id = id;
