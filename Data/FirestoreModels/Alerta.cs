@@ -24,6 +24,6 @@ namespace Application.Data.FirestoreModels
         public int Numero { get; set; }
         [FirestoreProperty]
         public string TelefonoContacto { get; set; }
-        public List<ContactoEmergencia> ContactosEmergencia { get => ContactosEmergencia; set => ContactosEmergencia = value; }
+        public List<ContactoEmergencia> ContactosEmergencia { get ; set ; }
     }
 }

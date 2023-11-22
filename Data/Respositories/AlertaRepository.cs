@@ -141,9 +141,10 @@ namespace Application.Data.Respositories
                 Ubicacion = entity.Ubicacion,
                 Fecha = new DateTime(entity.Fecha.Year, entity.Fecha.Month, entity.Fecha.Day, entity.Fecha.Hour, entity.Fecha.Minute, entity.Fecha.Second, DateTimeKind.Utc),
                 Hora = entity.Hora,
+                Mensaje = entity.Mensaje,
                 Numero = entity.Numero,
                 TelefonoContacto = entity.TelefonoContacto,
-                ContactosEmergencia = entity.ContactosEmergencia.Select(x => new FirestoreModels.ContactoEmergencia { Id = x.Id, Age = x.Age, Email = x.Email, FirstName = x.FirstName, LastName = x.LastName, Parentezco = x.Parentezco, TelefonoContacto = x.TelefonoContacto }).ToList(),
+                ContactosEmergencia = entity.ContactosEmergencia.Select(x => new FirestoreModels.ContactoEmergencia { Id = x.Id, Age = x.Age, Email = x.Email, FirstName = x.FirstName, LastName = x.LastName, FullName = x.FullName, Parentezco = x.Parentezco, TelefonoContacto = x.TelefonoContacto }).ToList(),
 
             };
 
@@ -156,9 +157,10 @@ namespace Application.Data.Respositories
                 Ubicacion = model.Ubicacion,
                 Fecha = model.Fecha,
                 Hora = model.Hora,
+                Mensaje = model.Mensaje,
                 Numero = model.Numero,
                 TelefonoContacto = model.TelefonoContacto,
-                ContactosEmergencia = model.ContactosEmergencia.Select(x => new ContactoEmergencia { Id = x.Id, Age = x.Age, Email = x.Email, FirstName = x.FirstName, LastName = x.LastName, Parentezco = x.Parentezco, TelefonoContacto = x.TelefonoContacto }).ToList(),
+                ContactosEmergencia = model?.ContactosEmergencia?.Select(x => new ContactoEmergencia { Id = x.Id, Age = x.Age, Email = x.Email, FirstName = x.FirstName,FullName = x.FullName, LastName = x.LastName, Parentezco = x.Parentezco, TelefonoContacto = x.TelefonoContacto }).ToList(),
             };
         }
     }

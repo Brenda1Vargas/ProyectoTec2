@@ -1,4 +1,4 @@
-﻿/*using Application.Utils;
+﻿using Application.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,9 +53,15 @@ namespace Application.Data.Respositories
 
         private FirestoreModels.Mayor MapEntityToFirestoremodel(Mayor entity)
         {
+            var alertaEmergencia = new FirestoreModels.Alerta { 
+                
+                Fecha = entity.AlarmaEmergencia.Fecha
+            //toadas las prope
+            };
+
             return new FirestoreModels.Mayor
             {
-                AlarmaEmergencia = entity.AlarmaEmergencia,
+                AlarmaEmergencia = alertaEmergencia,
                 LatitudHogar = entity.LatitudHogar,
                 LongitudHogar = entity.LongitudHogar
             };
@@ -63,11 +69,18 @@ namespace Application.Data.Respositories
         }
         private Mayor MapFirebaseModelToEntity(FirestoreModels.Mayor model)
         {
-            var alarmaEmergencia = new Alerta();
+            var alarmaEmergencia = new Alerta { 
+                //resto de las propiedades
+                Fecha = model.AlarmaEmergencia.Fecha
+            };
 
-            return new Mayor(model.AlarmaEmergencia, model.LatitudHogar, model.LongitudHogar);
+            return new Mayor {
+            Id= model.Id,
+            //EL RESTO DE LAS PROPIEDADES
+            AlarmaEmergencia = alarmaEmergencia
+            };
         }   
     }
 }
-*/
+
 

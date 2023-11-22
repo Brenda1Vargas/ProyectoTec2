@@ -21,8 +21,8 @@ namespace Application
             AlertaRepository alertaRepo = new AlertaRepository(dbConn);
 
 
-           /* LineaEmergencia lineaEmergencia = new LineaEmergencia(string.Empty, "1234", "Bogotaa");
-            lineaEmergenciaRepo.Insert(lineaEmergencia);*/
+            /* LineaEmergencia lineaEmergencia = new LineaEmergencia(string.Empty, "1234", "Bogotaa");
+             lineaEmergenciaRepo.Insert(lineaEmergencia);*/
 
             Console.WriteLine("------findAll...");
 
@@ -52,14 +52,34 @@ namespace Application
                 Id = "",
                 Ubicacion = "Bogota",
                 Fecha = DateTime.Now,
-                Hora = 10,
-                Numero = 1234567,
+                Hora = DateTime.Now.Hour,
+                Mensaje = "Ayuda, estoy en peligro",
+                Numero = 1234567,  
                 TelefonoContacto = "3156712473",
+                ContactosEmergencia = new List<ContactoEmergencia>
+                {
+                    new ContactoEmergencia { FullName = "Nombre1", TelefonoContacto = "3107568976" },
+                    new ContactoEmergencia { FullName = "Nombre2", TelefonoContacto = "3209876458" }
+
+                }
 
             };
 
             alertaRepo.Insert(alertaOne);
 
+            Console.WriteLine("------findAll Alertas");
+
+            var allAlertas = alertaRepo.FindAll();
+
+            foreach (var item in allAlertas)
+            {
+                Console.WriteLine($"{item.Id} {item.Ubicacion}{item.Fecha} {item.Hora}{item.Mensaje}{item.Numero}{item.TelefonoContacto}{item.ContactosEmergencia}");
+            }
+
+            Console.WriteLine("------find by id");
+            var OneAlerta = alertaRepo.FindById(allAlertas.First().Id);
+            Console.WriteLine($"{OneAlerta.Id} {OneAlerta.Ubicacion}{OneAlerta.Fecha}{OneAlerta.Mensaje}{OneAlerta.Mensaje} {OneAlerta.Numero} {OneAlerta.TelefonoContacto}{OneAlerta.ContactosEmergencia}");
+                
 
 
             /*Console.WriteLine("------Delete");

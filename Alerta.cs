@@ -16,7 +16,7 @@ namespace Application
 
         public Alerta()
         {
-            
+
         }
         public string Mensaje
         {
@@ -66,7 +66,7 @@ namespace Application
             set { id = value; }
         }
 
-        public void EnviarAlerta()
+      /*  public void EnviarAlerta()
         {
             foreach (var contacto in contactosEmergencia)
             {
@@ -112,6 +112,6 @@ namespace Application
         public void ActualizarFecha(DateTime nuevaFecha)
         {
             Fecha = nuevaFecha;
-        }
+        }*/
     }
 }

@@ -5,24 +5,25 @@ namespace Application
     public class ContactoEmergencia
     {
         private int age;
-        private string  _id;
+        private string _id;
         private string firstName;
         private string lastName;
         private string email;
         private string parentezco;
         private string telefonoContacto;
-
+        private string fullName;
 
         public ContactoEmergencia()
         {
-            
+
         }
-        public ContactoEmergencia(string id, int age, string firstName, string lastName, string email, string parentezco, string telefonoContacto)
+        public ContactoEmergencia(string id, int age, string firstName, string lastName, string fullName, string email, string parentezco, string telefonoContacto)
         {
             Id = id;
             this.age = age;
             this.firstName = firstName;
             this.lastName = lastName;
+            this.FullName = fullName;
             this.email = email;
             this.parentezco = parentezco;
             this.telefonoContacto = telefonoContacto;
@@ -62,10 +63,7 @@ namespace Application
             set { lastName = value; }
         }
 
-        public string FullName
-        {
-            get { return $"{firstName} {lastName}"; }
-        }
+
 
         public string Email
         {
@@ -85,5 +83,10 @@ namespace Application
             set { telefonoContacto = value; }
         }
 
+        public string FullName
+        {
+           get => fullName;
+           set => fullName = value;
+        }
     }
 }

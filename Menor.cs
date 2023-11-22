@@ -13,6 +13,10 @@ namespace Application
         public double LongitudHogar { get; set; }
 
 
+        public Menor(string? nombreMenor, string? apellidoMenor, int edadMenor) : this(nombreMenor)
+        {
+        }
+
         public Menor(string nombre, int edad, Alerta alarmaEmergencia, double latitudHogar, double longitudHogar)
         {
             FirstName = nombre;
@@ -25,10 +29,6 @@ namespace Application
             this.nombreMenor = nombreMenor;
             this.edadMenor = edadMenor;
             this.alerta = alerta;
-        }
-
-        public Menor( string? nombreMenor, string? apellidoMenor, int edadMenor) : this(nombreMenor)
-        {
         }
 
         public Menor(string? nombreMenor)
@@ -46,7 +46,7 @@ namespace Application
 
 
 
-        public void DetectarPeligro(string mensajePeligro)
+    /*    public void DetectarPeligro(string mensajePeligro)
         {
 
             double distanciaHogar = CalcularDistancia(UbicacionActual.Latitud, UbicacionActual.Longitud, LatitudHogar, LongitudHogar);
@@ -68,6 +68,6 @@ namespace Application
             // Aquí hay un ejemplo simple usando la distancia euclidiana (no adecuada para distancias reales):
             double distancia = Math.Sqrt(Math.Pow(latitud1 - latitud2, 2) + Math.Pow(longitud1 - longitud2, 2));
             return distancia;
-        }
+        }*/
     }
 }

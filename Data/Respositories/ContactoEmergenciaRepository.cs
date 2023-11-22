@@ -140,6 +140,7 @@ namespace Application.Data.Respositories
                 Age = entity.Age,
                 FirstName = entity.FirstName,
                 LastName = entity.LastName,
+                FullName = entity.FullName,
                 Email = entity.Email,
                 Parentezco = entity.Parentezco,
                 TelefonoContacto = entity.TelefonoContacto,
@@ -148,7 +149,7 @@ namespace Application.Data.Respositories
         }
         private ContactoEmergencia MapFirestoreModelToEntity(FirestoreModels.ContactoEmergencia model)
         {
-            return new ContactoEmergencia(model.Id, model.Age, model.FirstName, model.LastName, model.Email, model.Parentezco, model.TelefonoContacto);
+            return new ContactoEmergencia(model.Id, model.Age, model.FirstName, model.LastName, model.Email, model.Parentezco, model.TelefonoContacto, model.FullName);
         } 
     }
 }
