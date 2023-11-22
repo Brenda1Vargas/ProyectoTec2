@@ -16,7 +16,9 @@ namespace Application
         public Menor(string? nombreMenor, string? apellidoMenor, int edadMenor) : this(nombreMenor)
         {
         }
-
+        public Menor()
+        {
+        }
         public Menor(string nombre, int edad, Alerta alarmaEmergencia, double latitudHogar, double longitudHogar)
         {
             FirstName = nombre;

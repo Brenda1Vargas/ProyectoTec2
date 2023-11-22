@@ -66,52 +66,52 @@ namespace Application
             set { id = value; }
         }
 
-      /*  public void EnviarAlerta()
-        {
-            foreach (var contacto in contactosEmergencia)
-            {
-                Console.WriteLine($"Alerta enviada a {contacto.FirstName} ({contacto.Parentezco}) en el número {contacto.TelefonoContacto}");
+        /*  public void EnviarAlerta()
+          {
+              foreach (var contacto in contactosEmergencia)
+              {
+                  Console.WriteLine($"Alerta enviada a {contacto.FirstName} ({contacto.Parentezco}) en el número {contacto.TelefonoContacto}");
 
-                // Comprobar si hay un mensaje y mostrarlo
-                if (!string.IsNullOrEmpty(Mensaje))
-                {
-                    Console.WriteLine($"Mensaje: {Mensaje}");
-                }
-            }
-        }
+                  // Comprobar si hay un mensaje y mostrarlo
+                  if (!string.IsNullOrEmpty(Mensaje))
+                  {
+                      Console.WriteLine($"Mensaje: {Mensaje}");
+                  }
+              }
+          }
 
-        public int GenerarID()
-        {
-            // Obtener la fecha y hora actual.
-            DateTime ahora = DateTime.Now;
+          public int GenerarID()
+          {
+              // Obtener la fecha y hora actual.
+              DateTime ahora = DateTime.Now;
 
-            // Generar un valor único.
-            int valorUnico = ObtenerValorUnico();
+              // Generar un valor único.
+              int valorUnico = ObtenerValorUnico();
 
-            // Combinar la fecha y el valor único para generar un ID único.
-            string idUnico = ahora.ToString("yyyyMMddHHmmssfff") + valorUnico;
+              // Combinar la fecha y el valor único para generar un ID único.
+              string idUnico = ahora.ToString("yyyyMMddHHmmssfff") + valorUnico;
 
-            // Convierte el ID único a un entero.
-            if (int.TryParse(idUnico, out int idEntero))
-            {
-                return idEntero;
-            }
+              // Convierte el ID único a un entero.
+              if (int.TryParse(idUnico, out int idEntero))
+              {
+                  return idEntero;
+              }
 
-            // Si no se puede convertir a entero, retorna un valor predeterminado.
-            return -1;
-        }
+              // Si no se puede convertir a entero, retorna un valor predeterminado.
+              return -1;
+          }
 
-        private int ObtenerValorUnico()
-        {
+          private int ObtenerValorUnico()
+          {
 
-            Random random = new Random();
-            return random.Next(1000, 9999); // Número aleatorio de 4 dígitos como ejemplo.
-        }
+              Random random = new Random();
+              return random.Next(1000, 9999); // Número aleatorio de 4 dígitos como ejemplo.
+          }
 
 
-        public void ActualizarFecha(DateTime nuevaFecha)
-        {
-            Fecha = nuevaFecha;
-        }*/
+          public void ActualizarFecha(DateTime nuevaFecha)
+          {
+              Fecha = nuevaFecha;
+          }*/
     }
 }
