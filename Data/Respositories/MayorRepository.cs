@@ -113,7 +113,7 @@ namespace Application.Data.Respositories
             }
         }
 
-        public Mayor Update(Mayor entity)
+        public Mayor Update(Mayor entity) 
         {
             try
             {
@@ -168,8 +168,7 @@ namespace Application.Data.Respositories
                 Numero = model.AlarmaEmergencia.Numero,
                 TelefonoContacto = model.AlarmaEmergencia.TelefonoContacto,
                 ContactosEmergencia = model.AlarmaEmergencia.ContactosEmergencia.Select(x => new FirestoreModels.ContactoEmergencia { Id = x.Id, Age = x.Age, Email = x.Email, FirstName = x.FirstName, LastName = x.LastName, FullName = x.FullName, Parentezco = x.Parentezco, TelefonoContacto = x.TelefonoContacto }).ToList(),
-
-            };
+            }; 
 
             return new Mayor
             {
