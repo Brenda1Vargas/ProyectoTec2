@@ -18,6 +18,18 @@ namespace Application
         {
 
         }
+
+        public Alerta(string mensaje, string ubicacion, DateTime fecha, int hora, int numero, string telefonoContacto, List<ContactoEmergencia> contactosEmergencia)
+        {
+            this.mensaje = mensaje;
+            this.ubicacion = ubicacion;
+            this.fecha = fecha;
+            this.hora = hora;
+            this.numero = numero;
+            this.telefonoContacto = telefonoContacto;
+            this.contactosEmergencia = contactosEmergencia;
+        }
+
         public string Mensaje
         {
             get { return mensaje; }
@@ -65,53 +77,55 @@ namespace Application
             get { return id; }
             set { id = value; }
         }
-
-        /*  public void EnviarAlerta()
-          {
-              foreach (var contacto in contactosEmergencia)
-              {
-                  Console.WriteLine($"Alerta enviada a {contacto.FirstName} ({contacto.Parentezco}) en el número {contacto.TelefonoContacto}");
-
-                  // Comprobar si hay un mensaje y mostrarlo
-                  if (!string.IsNullOrEmpty(Mensaje))
-                  {
-                      Console.WriteLine($"Mensaje: {Mensaje}");
-                  }
-              }
-          }
-
-          public int GenerarID()
-          {
-              // Obtener la fecha y hora actual.
-              DateTime ahora = DateTime.Now;
-
-              // Generar un valor único.
-              int valorUnico = ObtenerValorUnico();
-
-              // Combinar la fecha y el valor único para generar un ID único.
-              string idUnico = ahora.ToString("yyyyMMddHHmmssfff") + valorUnico;
-
-              // Convierte el ID único a un entero.
-              if (int.TryParse(idUnico, out int idEntero))
-              {
-                  return idEntero;
-              }
-
-              // Si no se puede convertir a entero, retorna un valor predeterminado.
-              return -1;
-          }
-
-          private int ObtenerValorUnico()
-          {
-
-              Random random = new Random();
-              return random.Next(1000, 9999); // Número aleatorio de 4 dígitos como ejemplo.
-          }
-
-
-          public void ActualizarFecha(DateTime nuevaFecha)
-          {
-              Fecha = nuevaFecha;
-          }*/
     }
+
+
+    /*  public void EnviarAlerta()
+      {
+          foreach (var contacto in contactosEmergencia)
+          {
+              Console.WriteLine($"Alerta enviada a {contacto.FirstName} ({contacto.Parentezco}) en el número {contacto.TelefonoContacto}");
+
+              // Comprobar si hay un mensaje y mostrarlo
+              if (!string.IsNullOrEmpty(Mensaje))
+              {
+                  Console.WriteLine($"Mensaje: {Mensaje}");
+              }
+          }
+      }
+
+      public int GenerarID()
+      {
+          // Obtener la fecha y hora actual.
+          DateTime ahora = DateTime.Now;
+
+          // Generar un valor único.
+          int valorUnico = ObtenerValorUnico();
+
+          // Combinar la fecha y el valor único para generar un ID único.
+          string idUnico = ahora.ToString("yyyyMMddHHmmssfff") + valorUnico;
+
+          // Convierte el ID único a un entero.
+          if (int.TryParse(idUnico, out int idEntero))
+          {
+              return idEntero;
+          }
+
+          // Si no se puede convertir a entero, retorna un valor predeterminado.
+          return -1;
+      }
+
+      private int ObtenerValorUnico()
+      {
+
+          Random random = new Random();
+          return random.Next(1000, 9999); // Número aleatorio de 4 dígitos como ejemplo.
+      }
+
+
+      public void ActualizarFecha(DateTime nuevaFecha)
+      {
+          Fecha = nuevaFecha;
+      }*/
 }
+

@@ -1,4 +1,5 @@
-﻿using Application.Utils;
+﻿using Application.Data.FirestoreModels;
+using Application.Utils;
 using Google.Cloud.Firestore;
 using System;
 using System.Collections.Generic;
@@ -69,6 +70,12 @@ namespace Application.Data.Respositories
         {
             try
             {
+                if (id == null)
+                {
+                    // Manejar el caso en que id es nulo
+                    return null;
+                }
+
                 MessageLogger.LogInformationMessage($"FindById... {id}");
 
                 var docRef = _connection.FirestoreDb.Collection(COLLECTION_NAME).Document(id);
@@ -113,16 +120,16 @@ namespace Application.Data.Respositories
             }
         }
 
-        public Mayor Update(Mayor entity) 
+        public Mayor Update(Mayor entity)
         {
             try
             {
-                MessageLogger.LogInformationMessage($"Insert... {entity.Id}");
+                MessageLogger.LogInformationMessage($"Update... {entity.Id}");
 
                 var recordRef = _connection.FirestoreDb.Collection(COLLECTION_NAME).Document(entity.Id);
                 var fbModel = MapEntityToFirestoremodel(entity);
                 recordRef.SetAsync(fbModel, SetOptions.MergeAll).ConfigureAwait(false).GetAwaiter().GetResult();
-                MessageLogger.LogInformationMessage($"Success Insert... {entity.Id}");
+                MessageLogger.LogInformationMessage($"Success Update... {entity.Id}");
 
                 return entity;
             }
@@ -135,22 +142,64 @@ namespace Application.Data.Respositories
 
         private FirestoreModels.Mayor MapEntityToFirestoremodel(Mayor entity)
         {
-            var alertaEmergencia = new FirestoreModels.Alerta
-            {
+            FirestoreModels.Alerta alarmaEmergencia = null;
+            List<FirestoreModels.Ubicacion> lugaresFrecuentes = null;
+            List<FirestoreModels.ContactoEmergencia> _contactoEmergencia = null;
 
-                Fecha = entity.AlarmaEmergencia.Fecha,
-                Id = entity.AlarmaEmergencia.Id,
-                Mensaje = entity.AlarmaEmergencia.Mensaje,
-                Ubicacion = entity.AlarmaEmergencia.Ubicacion,
-                Hora = entity.AlarmaEmergencia.Hora,
-                Numero = entity.AlarmaEmergencia.Numero,
-                TelefonoContacto = entity.AlarmaEmergencia.TelefonoContacto,
-                ContactosEmergencia = entity.AlarmaEmergencia.ContactosEmergencia.Select(x => new FirestoreModels.ContactoEmergencia { Id = x.Id, Age = x.Age, Email = x.Email, FirstName = x.FirstName, LastName = x.LastName, FullName = x.FullName, Parentezco = x.Parentezco, TelefonoContacto = x.TelefonoContacto }).ToList(),
-            };
+            if (entity.AlarmaEmergencia != null)
+            {
+                alarmaEmergencia = new FirestoreModels.Alerta
+                {
+
+                    Fecha = entity.AlarmaEmergencia.Fecha,
+                    Id = entity.AlarmaEmergencia.Id,
+                    Mensaje = entity.AlarmaEmergencia.Mensaje,
+                    Ubicacion = entity.AlarmaEmergencia.Ubicacion,
+                    Hora = entity.AlarmaEmergencia.Hora,
+                    Numero = entity.AlarmaEmergencia.Numero,
+                    TelefonoContacto = entity.AlarmaEmergencia.TelefonoContacto,
+                    ContactosEmergencia = entity.AlarmaEmergencia?.ContactosEmergencia?.Select(x => new FirestoreModels.ContactoEmergencia { Id = x.Id, Age = x.Age, Email = x.Email, FirstName = x.FirstName, LastName = x.LastName, FullName = x.FullName, Parentezco = x.Parentezco, TelefonoContacto = x.TelefonoContacto }).ToList(),
+                };
+
+
+            }
+            if (entity.LugaresFrecuentes != null)
+            {
+                lugaresFrecuentes = entity.LugaresFrecuentes.Select(x =>
+                    new FirestoreModels.Ubicacion
+                    {
+                        Id = x.Id,
+                        Longitud = x.Longitud,
+                        Nombre = x.Nombre,
+                        Latitud = x.Latitud
+                    }).ToList();
+            }
+
+            if (entity.ContactoEmergencia != null)
+            {
+                _contactoEmergencia = entity.ContactoEmergencia.Select(x =>
+                    new FirestoreModels.ContactoEmergencia
+                    {
+                        Id = x.Id,
+                        Age = x.Age,
+                        Email = x.Email,
+                        FirstName = x.FirstName,
+                        LastName = x.LastName,
+                        FullName = x.FullName,
+                        Parentezco = x.Parentezco,
+                        TelefonoContacto = x.TelefonoContacto
+                    }).ToList();
+            }
 
             return new FirestoreModels.Mayor
             {
-                AlarmaEmergencia = alertaEmergencia,
+                FirstName = entity.FirstName,
+                LastName = entity.LastName,
+                Age = entity.Age,
+                Id = entity.Id,
+                LugaresFrecuentes = lugaresFrecuentes,
+                AlarmaEmergencia = alarmaEmergencia,
+                ContactoEmergencia = _contactoEmergencia,
                 LatitudHogar = entity.LatitudHogar,
                 LongitudHogar = entity.LongitudHogar
             };
@@ -158,27 +207,67 @@ namespace Application.Data.Respositories
         }
         private Mayor MapFirebaseModelToEntity(FirestoreModels.Mayor model)
         {
-            var alarmaEmergencia = new Alerta
+            Alerta alarmaEmergencia = null;
+            List<Ubicacion> lugaresFrecuentes = null;
+            List<ContactoEmergencia> _contactoEmergencia = null;
+
+            if (model.AlarmaEmergencia != null)
             {
-                Fecha = model.AlarmaEmergencia.Fecha,
-                Id = model.AlarmaEmergencia.Id,
-                Mensaje = model.AlarmaEmergencia.Mensaje,
-                Ubicacion = model.AlarmaEmergencia.Ubicacion,
-                Hora = model.AlarmaEmergencia.Hora,
-                Numero = model.AlarmaEmergencia.Numero,
-                TelefonoContacto = model.AlarmaEmergencia.TelefonoContacto,
-                ContactosEmergencia = model.AlarmaEmergencia.ContactosEmergencia.Select(x => new FirestoreModels.ContactoEmergencia { Id = x.Id, Age = x.Age, Email = x.Email, FirstName = x.FirstName, LastName = x.LastName, FullName = x.FullName, Parentezco = x.Parentezco, TelefonoContacto = x.TelefonoContacto }).ToList(),
-            }; 
+                alarmaEmergencia = new Alerta
+                {
+
+                    Fecha = model.AlarmaEmergencia.Fecha,
+                    Id = model.AlarmaEmergencia.Id,
+                    Mensaje = model.AlarmaEmergencia.Mensaje,
+                    Ubicacion = model.AlarmaEmergencia.Ubicacion,
+                    Hora = model.AlarmaEmergencia.Hora,
+                    Numero = model.AlarmaEmergencia.Numero,
+                    TelefonoContacto = model.AlarmaEmergencia.TelefonoContacto,
+                    ContactosEmergencia = model.AlarmaEmergencia?.ContactosEmergencia?.Select(x => new ContactoEmergencia { Id = x.Id, Age = x.Age, Email = x.Email, FirstName = x.FirstName, LastName = x.LastName, FullName = x.FullName, Parentezco = x.Parentezco, TelefonoContacto = x.TelefonoContacto }).ToList(),
+                };
+
+                if (model.LugaresFrecuentes != null)
+                {
+                    lugaresFrecuentes = model.LugaresFrecuentes.Select(x =>
+                        new Ubicacion
+                        {
+                            Id = x.Id,
+                            Longitud = x.Longitud,
+                            Nombre = x.Nombre,
+                            Latitud = x.Latitud
+                        }).ToList();
+                }
+
+                if (model.ContactoEmergencia != null)
+                {
+                    _contactoEmergencia = model.ContactoEmergencia.Select(x =>
+                        new ContactoEmergencia
+                        {
+                            Id = x.Id,
+                            Age = x.Age,
+                            Email = x.Email,
+                            FirstName = x.FirstName,
+                            LastName = x.LastName,
+                            FullName = x.FullName,
+                            Parentezco = x.Parentezco,
+                            TelefonoContacto = x.TelefonoContacto
+                            
+                        }).ToList();
+                }
+            }
 
             return new Mayor
             {
-                AlarmaEmergencia = alarmaEmergencia,
-                LongitudHogar = model.LongitudHogar,
-                LatitudHogar = model.LatitudHogar,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Age = model.Age,
                 Id = model.Id,
+                LugaresFrecuentes = lugaresFrecuentes,
+                AlarmaEmergencia = alarmaEmergencia,
+                ContactoEmergencia = _contactoEmergencia,
+                LatitudHogar = model.LatitudHogar,
+                LongitudHogar = model.LongitudHogar
             };
         }
     }
 }
-
-

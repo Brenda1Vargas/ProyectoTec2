@@ -118,12 +118,12 @@ namespace Application.Data.Respositories
         {
             try
             {
-                MessageLogger.LogInformationMessage($"Insert... {entity.Numero}");
+                MessageLogger.LogInformationMessage($"Update... {entity.Numero}");
 
                 var recordRef = _connection.FirestoreDb.Collection(COLLECTION_NAME).Document(entity.Id);
                 var fbModel = MapEntityToFirestoremodel(entity);
                 recordRef.SetAsync(fbModel, SetOptions.MergeAll).ConfigureAwait(false).GetAwaiter().GetResult();
-                MessageLogger.LogInformationMessage($"Success Insert... {entity.Numero}");
+                MessageLogger.LogInformationMessage($"Success Update... {entity.Numero}");
 
                 return entity;
             }
@@ -144,7 +144,7 @@ namespace Application.Data.Respositories
                 Mensaje = entity.Mensaje,
                 Numero = entity.Numero,
                 TelefonoContacto = entity.TelefonoContacto,
-                ContactosEmergencia = entity.ContactosEmergencia.Select(x => new FirestoreModels.ContactoEmergencia { Id = x.Id, Age = x.Age, Email = x.Email, FirstName = x.FirstName, LastName = x.LastName, FullName = x.FullName, Parentezco = x.Parentezco, TelefonoContacto = x.TelefonoContacto }).ToList(),
+                ContactosEmergencia = entity.ContactosEmergencia?.Select(x => new FirestoreModels.ContactoEmergencia { Id = x.Id, Age = x.Age, Email = x.Email, FirstName = x.FirstName, LastName = x.LastName, FullName = x.FullName, Parentezco = x.Parentezco, TelefonoContacto = x.TelefonoContacto }).ToList(),
 
             };
 

@@ -12,11 +12,12 @@ namespace Application
         private Ubicacion _ubicacionActual;
         private List<Ubicacion> _lugarFrecuentes;
         private List<ContactoEmergencia> _contactoEmergencia;
+        // private string id;
 
         public List<Ubicacion> LugaresFrecuentes
         {
             get { return _lugarFrecuentes; }
-            set { _lugarFrecuentes = value; }        }
+            set { _lugarFrecuentes = value; } }
 
         public List<ContactoEmergencia> ContactoEmergencia
         {
@@ -48,13 +49,15 @@ namespace Application
 
         public Ubicacion UbicacionActual { get => _ubicacionActual; set => _ubicacionActual = value; }
 
-        public Usuario(string id, string firstName, string lastName, int age)
+       /* public Usuario(string id, string firstName, string lastName, int age)
         {
             Id = id;
             FirstName = firstName;
             LastName = lastName;
             Age = age;
         }
+       */
+
 
         public Usuario(string firstName, string lastName, int age)
         {
@@ -68,12 +71,23 @@ namespace Application
             FirstName = firstName;
             Age = age;
         }
+        public Usuario(string id, string firstName, string lastName, int age, List<Ubicacion> lugaresFrecuentes, List<ContactoEmergencia> contactoEmergencia, Ubicacion ubicacionActual)
+        {
+            this.Id = id;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.Age = age;
+            this.LugaresFrecuentes = lugaresFrecuentes;
+            this.ContactoEmergencia = contactoEmergencia;
+            this.UbicacionActual = ubicacionActual;
+        }
+
 
         public Usuario()
         {
         }
 
-        public static void AgregarUsuario(Usuario usuario)
+    /*    public static void AgregarUsuario(Usuario usuario)
         {
             // Agrega el usuario a una base de datos o lista
             Console.WriteLine("Usuario agregado con éxito.");
@@ -125,7 +139,7 @@ namespace Application
         public string ObtenerTipoUsuario()
         {
             return Age >= 18 ? "Mayor de Edad" : "Menor de Edad";
-        }
+        }*/
 
     }
 }

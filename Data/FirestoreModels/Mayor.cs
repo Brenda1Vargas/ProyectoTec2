@@ -6,12 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Application.Data.FirestoreModels
-{
+ {
     [FirestoreData]
     public class Mayor : Usuario
     {
-        [FirestoreDocumentId]
-        public string Id { get; set; } 
 
         [FirestoreProperty]
         public Alerta AlarmaEmergencia { get; set; }

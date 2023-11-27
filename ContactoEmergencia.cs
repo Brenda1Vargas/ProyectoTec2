@@ -29,6 +29,8 @@ namespace Application
             this.telefonoContacto = telefonoContacto;
         }
 
+
+
         public string Id
         {
             get { return _id; }
@@ -88,5 +90,6 @@ namespace Application
            get => fullName;
            set => fullName = value;
         }
+
     }
 }

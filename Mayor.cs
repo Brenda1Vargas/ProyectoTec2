@@ -9,6 +9,7 @@ namespace Application
         private Alerta alerta;
 
 
+
         public Alerta AlarmaEmergencia { get; set; }
         public double LatitudHogar { get; set; }
         public double LongitudHogar { get; set; }
@@ -39,38 +40,41 @@ namespace Application
             this.nombreMayor = nombreMayor;
         }
 
-        public Mayor(string? nombreMayor, int edadMayor,Alerta alerta)
+        public Mayor(string? nombreMayor, int edadMayor, Alerta alerta)
         {
             this.nombreMayor = nombreMayor;
             this.edadMayor = edadMayor;
             this.alerta = alerta;
         }
-        public Mayor( Alerta alarmaEmergencia, double latitudHogar, double longitudHogar)
+
+        public Mayor(string nombre, int edad, double latitudHogar, double longitudHogar)
         {
-            AlarmaEmergencia = alarmaEmergencia;
+            FirstName = nombre;
+            Age = edad;
+            AlarmaEmergencia = new Alerta(); // Inicializar el objeto Alerta
             LatitudHogar = latitudHogar;
             LongitudHogar = longitudHogar;
         }
 
-      /*  public void DetectarPeligro(string mensajePeligro)
-        {
+        /*  public void DetectarPeligro(string mensajePeligro)
+          {
 
-            double distanciaHogar = CalcularDistancia(UbicacionActual.Latitud, UbicacionActual.Longitud, LatitudHogar, LongitudHogar);
+              double distanciaHogar = CalcularDistancia(UbicacionActual.Latitud, UbicacionActual.Longitud, LatitudHogar, LongitudHogar);
 
-            // Umbral de distancia de peligro (ajusta este valor según tus necesidades)
-            double umbralDistanciaPeligro = 10.0; // Por ejemplo, 10 kilómetros
+              // Umbral de distancia de peligro (ajusta este valor según tus necesidades)
+              double umbralDistanciaPeligro = 10.0; // Por ejemplo, 10 kilómetros
 
 
-            if (distanciaHogar > umbralDistanciaPeligro)
-            {
-                AlarmaEmergencia.EnviarAlerta();
-            }
-        }
+              if (distanciaHogar > umbralDistanciaPeligro)
+              {
+                  AlarmaEmergencia.EnviarAlerta();
+              }
+          }
 
-        private double CalcularDistancia(double latitud1, double longitud1, double latitud2, double longitud2)
-        {
-            double distancia = Math.Sqrt(Math.Pow(latitud1 - latitud2, 2) + Math.Pow(longitud1 - longitud2, 2));
-            return distancia;
-        }*/
+          private double CalcularDistancia(double latitud1, double longitud1, double latitud2, double longitud2)
+          {
+              double distancia = Math.Sqrt(Math.Pow(latitud1 - latitud2, 2) + Math.Pow(longitud1 - longitud2, 2));
+              return distancia;
+          }*/
     }
 }

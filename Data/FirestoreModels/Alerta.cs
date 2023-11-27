@@ -12,6 +12,7 @@ namespace Application.Data.FirestoreModels
     {
         [FirestoreDocumentId]
         public string Id { get; set; }
+
         [FirestoreProperty]
         public string Mensaje { get; set; }
         [FirestoreProperty]

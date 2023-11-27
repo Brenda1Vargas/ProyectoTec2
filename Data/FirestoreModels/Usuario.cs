@@ -16,6 +16,7 @@ namespace Application.Data.FirestoreModels
 
         [FirestoreProperty]
         public List<Ubicacion> LugaresFrecuentes { get; set; }
+
         [FirestoreProperty]
         public List<ContactoEmergencia> ContactoEmergencia { get; set; }
 

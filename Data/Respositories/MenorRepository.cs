@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Grpc.Core.Metadata;
 
 namespace Application.Data.Respositories
 {
@@ -13,9 +14,9 @@ namespace Application.Data.Respositories
         private const string COLLECTION_NAME = "menor";
         private readonly Connection _connection;
 
-        public MenorRepository(Connection dbConnetion)
+        public MenorRepository(Connection dbConnection)
         {
-            _connection = dbConnetion;
+            _connection = dbConnection;
         }
 
         public void Delete(string id)
@@ -134,47 +135,62 @@ namespace Application.Data.Respositories
 
         private FirestoreModels.Menor MapEntityToFirestoremodel(Menor entity)
         {
-            var alertaEmergencia = new FirestoreModels.Alerta
+            FirestoreModels.Alerta alarmaEmergencia = null;
+
+            if (entity.AlarmaEmergencia != null)
             {
-                Fecha = entity.AlarmaEmergencia.Fecha,
-                Id = entity.AlarmaEmergencia.Id,
-                Mensaje = entity.AlarmaEmergencia.Mensaje,
-                Ubicacion = entity.AlarmaEmergencia.Ubicacion,
-                Hora = entity.AlarmaEmergencia.Hora,
-                Numero = entity.AlarmaEmergencia.Numero,
-                TelefonoContacto = entity.AlarmaEmergencia.TelefonoContacto,
-                ContactosEmergencia = entity.AlarmaEmergencia.ContactosEmergencia.Select(x => new FirestoreModels.ContactoEmergencia { Id = x.Id, Age = x.Age, Email = x.Email, FirstName = x.FirstName, LastName = x.LastName, FullName = x.FullName, Parentezco = x.Parentezco, TelefonoContacto = x.TelefonoContacto }).ToList(),
-            };
+                alarmaEmergencia = new FirestoreModels.Alerta
+                {
+
+                    Fecha = entity.AlarmaEmergencia.Fecha,
+                    Id = entity.AlarmaEmergencia.Id,
+                    Mensaje = entity.AlarmaEmergencia.Mensaje,
+                    Ubicacion = entity.AlarmaEmergencia.Ubicacion,
+                    Hora = entity.AlarmaEmergencia.Hora,
+                    Numero = entity.AlarmaEmergencia.Numero,
+                    TelefonoContacto = entity.AlarmaEmergencia.TelefonoContacto,
+                    ContactosEmergencia = entity.AlarmaEmergencia.ContactosEmergencia.Select(x => new FirestoreModels.ContactoEmergencia { Id = x.Id, Age = x.Age, Email = x.Email, FirstName = x.FirstName, LastName = x.LastName, FullName = x.FullName, Parentezco = x.Parentezco, TelefonoContacto = x.TelefonoContacto }).ToList(),
+                };
+
+            }
 
             return new FirestoreModels.Menor
             {
-                AlarmaEmergencia = alertaEmergencia,
+                AlarmaEmergencia = alarmaEmergencia,
                 LatitudHogar = entity.LatitudHogar,
                 LongitudHogar = entity.LongitudHogar
             };
 
+
         }
         private Menor MapFirebaseModelToEntity(FirestoreModels.Menor model)
         {
-            var alarmaEmergencia = new Alerta
+            Alerta alarmaEmergencia = null;
+
+            if (model.AlarmaEmergencia != null)
             {
-                Fecha = model.AlarmaEmergencia.Fecha,
-                Id = model.AlarmaEmergencia.Id,
-                Mensaje = model.AlarmaEmergencia.Mensaje,
-                Ubicacion = model.AlarmaEmergencia.Ubicacion,
-                Hora = model.AlarmaEmergencia.Hora,
-                Numero = model.AlarmaEmergencia.Numero,
-                TelefonoContacto = model.AlarmaEmergencia.TelefonoContacto,
-                ContactosEmergencia = model.AlarmaEmergencia.ContactosEmergencia?.Select(x => new FirestoreModels.ContactoEmergencia { Id = x.Id, Age = x.Age, Email = x.Email, FirstName = x.FirstName, LastName = x.LastName, FullName = x.FullName, Parentezco = x.Parentezco, TelefonoContacto = x.TelefonoContacto }).ToList(),
-            };
+                alarmaEmergencia = new Alerta
+                {
+
+                    Fecha = model.AlarmaEmergencia.Fecha,
+                    Id = model.AlarmaEmergencia.Id,
+                    Mensaje = model.AlarmaEmergencia.Mensaje,
+                    Ubicacion = model.AlarmaEmergencia.Ubicacion,
+                    Hora = model.AlarmaEmergencia.Hora,
+                    Numero = model.AlarmaEmergencia.Numero,
+                    TelefonoContacto = model.AlarmaEmergencia.TelefonoContacto,
+                    ContactosEmergencia = model.AlarmaEmergencia.ContactosEmergencia.Select(x => new ContactoEmergencia { Id = x.Id, Age = x.Age, Email = x.Email, FirstName = x.FirstName, LastName = x.LastName, FullName = x.FullName, Parentezco = x.Parentezco, TelefonoContacto = x.TelefonoContacto }).ToList(),
+                };
+
+            }
 
             return new Menor
             {
                 AlarmaEmergencia = alarmaEmergencia,
-                LongitudHogar = model.LongitudHogar,
                 LatitudHogar = model.LatitudHogar,
-                Id = model.Id,
+                LongitudHogar = model.LongitudHogar
             };
+
         }
     }
 }
