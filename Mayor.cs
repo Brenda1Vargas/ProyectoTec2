@@ -8,18 +8,12 @@ namespace Application
         private int edadMayor;
         private Alerta alerta;
 
-
-
         public Alerta AlarmaEmergencia { get; set; }
         public double LatitudHogar { get; set; }
         public double LongitudHogar { get; set; }
 
 
         public Mayor()
-        {
-        }
-
-        public Mayor(string? nombreMayor, string apellidoMayor, int edadMayor) : this(nombreMayor)
         {
         }
 
@@ -51,30 +45,9 @@ namespace Application
         {
             FirstName = nombre;
             Age = edad;
-            AlarmaEmergencia = new Alerta(); // Inicializar el objeto Alerta
+            AlarmaEmergencia = new Alerta(); 
             LatitudHogar = latitudHogar;
             LongitudHogar = longitudHogar;
         }
-
-        /*  public void DetectarPeligro(string mensajePeligro)
-          {
-
-              double distanciaHogar = CalcularDistancia(UbicacionActual.Latitud, UbicacionActual.Longitud, LatitudHogar, LongitudHogar);
-
-              // Umbral de distancia de peligro (ajusta este valor según tus necesidades)
-              double umbralDistanciaPeligro = 10.0; // Por ejemplo, 10 kilómetros
-
-
-              if (distanciaHogar > umbralDistanciaPeligro)
-              {
-                  AlarmaEmergencia.EnviarAlerta();
-              }
-          }
-
-          private double CalcularDistancia(double latitud1, double longitud1, double latitud2, double longitud2)
-          {
-              double distancia = Math.Sqrt(Math.Pow(latitud1 - latitud2, 2) + Math.Pow(longitud1 - longitud2, 2));
-              return distancia;
-          }*/
     }
 }

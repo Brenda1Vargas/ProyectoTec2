@@ -21,6 +21,9 @@ namespace Application.Data.FirestoreModels
         public List<ContactoEmergencia> ContactoEmergencia { get; set; }
 
         [FirestoreProperty]
+        public List<Ubicacion> UbicacionActual { get; set; }
+
+        [FirestoreProperty]
         public string FirstName { get; set; }
 
         [FirestoreProperty]
@@ -30,6 +33,10 @@ namespace Application.Data.FirestoreModels
         public int Age { get; set; }
 
         [FirestoreProperty]
-        public Ubicacion UbicacionActual { get; set; }
+        public string LocationUrl { get; set; }
+
+        [FirestoreProperty]
+        public string ImageUrl { get; set; }
+
     }
 }

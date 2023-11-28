@@ -69,15 +69,65 @@ namespace Application
         }
 
         #region Linea Emergencia Operations
-
         private static void PerformLineaEmergenciaOperations()
         {
             Connection dbConn = new Connection();
             LineaEmergenciaRepository lineaEmergenciaRepo = new LineaEmergenciaRepository(dbConn);
 
+            while (true)
+            {
+                Console.WriteLine("------- Submenú de Operaciones de Linea de Emergencia -----------");
+                Console.WriteLine("1. Crear Linea de Emergencia");
+                Console.WriteLine("2. Mostrar Todas las Lineas de Emergencia");
+                Console.WriteLine("3. Buscar Linea de Emergencia por ID");
+                Console.WriteLine("4. Actualizar Linea de Emergencia");
+                Console.WriteLine("5. Eliminar Linea de Emergencia");
+                Console.WriteLine("6. Salir");
+                Console.WriteLine("-------------------------------------------");
+                Console.Write("Ingrese el número de la operación que desea realizar: ");
+                string opcion = Console.ReadLine();
 
-            //-----------------------------------------------------------------------------------//
-            Console.WriteLine("------ Create Linea Emergencia...");
+                switch (opcion)
+                {
+                    case "1":
+                        Console.WriteLine("------ Crear Linea de Emergencia ------");
+                        CreateLineaEmergencia(lineaEmergenciaRepo);
+                        Console.WriteLine("-----------------------------------------");
+                        break;
+                    case "2":
+                        Console.WriteLine("------ Mostrar Todas las Lineas de Emergencia ------");
+                        FindAllLineasEmergencia(lineaEmergenciaRepo);
+                        Console.WriteLine("----------------------------------------------------");
+                        break;
+                    case "3":
+                        Console.WriteLine("------ Buscar Linea de Emergencia por ID ------");
+                        FindByIdLineaEmergencia(lineaEmergenciaRepo);
+                        Console.WriteLine("-------------------------------------------------");
+                        break;
+                    case "4":
+                        Console.WriteLine("------ Actualizar Linea de Emergencia ------");
+                        UpdateLineaEmergencia(lineaEmergenciaRepo);
+                        Console.WriteLine("--------------------------------------------");
+                        break;
+                    case "5":
+                        Console.WriteLine("------ Eliminar Linea de Emergencia ------");
+                        DeleteLineaEmergencia(lineaEmergenciaRepo);
+                        Console.WriteLine("--------------------------------------------");
+                        break;
+                    case "6":
+                        Console.WriteLine("Saliendo del Submenú de Operaciones de Linea de Emergencia...");
+                        return;
+                    default:
+                        Console.WriteLine("Opción inválida. Por favor, seleccione un número válido.");
+                        break;
+                }
+
+                Console.WriteLine();
+            }
+        }
+        private static void CreateLineaEmergencia(LineaEmergenciaRepository lineaEmergenciaRepo)
+        {
+            Console.WriteLine("------ Crear Linea de Emergencia ------");
 
             Console.Write("ID: ");
             string id = "1234567";
@@ -90,9 +140,10 @@ namespace Application
 
             LineaEmergencia lineaEmergencia = new LineaEmergencia(id, numero, ubicacion);
             lineaEmergenciaRepo.Insert(lineaEmergencia);
-
-            //-----------------------------------------------------------------------------------//
-            Console.WriteLine("------ FindAll Linea Emergencia...");
+        }
+        public static void FindAllLineasEmergencia(LineaEmergenciaRepository lineaEmergenciaRepo)
+        {
+            Console.WriteLine("------ Mostrar Todas las Lineas de Emergencia ------");
 
             var allLineaEmergencia = lineaEmergenciaRepo.FindAll();
 
@@ -101,25 +152,32 @@ namespace Application
                 Console.WriteLine($"{item.Id}{item.NumeroEmergencia} {item.UbicacionEmergencia}");
             }
 
-            //-----------------------------------------------------------------------------------//
-            Console.WriteLine("------ FindById Linea Emergencia");
+            if (allLineaEmergencia.Count == 0)
+            {
+                Console.WriteLine("No se encontraron registros de Lineas de Emergencia.");
+            }
+        }
+        public static void FindByIdLineaEmergencia(LineaEmergenciaRepository lineaEmergenciaRepo)
+        {
+            Console.WriteLine("------ Buscar Linea de Emergencia por ID ------");
+
+            var allLineaEmergencia = lineaEmergenciaRepo.FindAll();
 
             var oneLineaEmergencia = lineaEmergenciaRepo.FindById(allLineaEmergencia.First().Id);
             Console.WriteLine($"{oneLineaEmergencia.Id} {oneLineaEmergencia.NumeroEmergencia} {oneLineaEmergencia.UbicacionEmergencia} {oneLineaEmergencia.RealizarLlamadaEmergencia}");
 
+        }
+        public static void UpdateLineaEmergencia(LineaEmergenciaRepository lineaEmergenciaRepo)
+        {
+            Console.WriteLine("------ Actualizar Linea de Emergencia ------");
 
-            //-----------------------------------------------------------------------------------//
-            Console.WriteLine("------ Delete Linea Emergencia");
-            lineaEmergenciaRepo.Delete(allLineaEmergencia.First().Id);
-
-            //-----------------------------------------------------------------------------------//
-            Console.WriteLine("------ Update Linea Emergencia");
+            var allLineaEmergencia = lineaEmergenciaRepo.FindAll();
 
             LineaEmergencia updatedLineaEmergencia = allLineaEmergencia.Last();
 
 
-            Console.Write("Ingrese su ID: ");
-            id = "1234567";
+            Console.Write(" ID: ");
+            var id = "1234567";
 
             Console.Write("Ingrese el número de emergencia al que desea comunicarse: ");
 
@@ -130,20 +188,75 @@ namespace Application
 
             lineaEmergenciaRepo.Update(updatedLineaEmergencia);
         }
+        public static void DeleteLineaEmergencia(LineaEmergenciaRepository lineaEmergenciaRepo)
+        {
+            Console.WriteLine("------ Eliminar Linea de Emergencia ------");
 
+            var allLineaEmergencia = lineaEmergenciaRepo.FindAll();
+            lineaEmergenciaRepo.Delete(allLineaEmergencia.First().Id);
+        }
         #endregion
 
-        #region Alerta Operations
-
+        #region Operaciones Alerta
         private static void PerformAlertaOperations()
         {
             Connection dbConn = new Connection();
             AlertaRepository alertaRepo = new AlertaRepository(dbConn);
 
-            //-----------------------------------------------------------------------------------//
+            while (true)
+            {
+                Console.WriteLine("------- Submenú de Operaciones de Alerta -----------");
+                Console.WriteLine("1. Crear Alerta");
+                Console.WriteLine("2. Mostrar Todas las Alertas");
+                Console.WriteLine("3. Buscar Alerta por ID");
+                Console.WriteLine("4. Actualizar Alerta");
+                Console.WriteLine("5. Eliminar Alerta");
+                Console.WriteLine("6. Salir");
+                Console.WriteLine("-------------------------------------------");
+                Console.Write("Ingrese el número de la operación que desea realizar: ");
+                string opcion = Console.ReadLine();
 
-            Console.WriteLine("------ Create ---");
+                switch (opcion)
+                {
+                    case "1":
+                        Console.WriteLine("------ Crear Alerta ------");
+                        CreateAlerta(alertaRepo);
+                        Console.WriteLine("-----------------------------------------");
+                        break;
+                    case "2":
+                        Console.WriteLine("------ Mostrar Todas las Alertas ------");
+                        FindAllAlertas(alertaRepo);
+                        Console.WriteLine("----------------------------------------------------");
+                        break;
+                    case "3":
+                        Console.WriteLine("------ Buscar Alerta por ID ------");
+                        FindAlertaById(alertaRepo);
+                        Console.WriteLine("-------------------------------------------------");
+                        break;
+                    case "4":
+                        Console.WriteLine("------ Actualizar Alerta ------");
+                        UpdateAlerta(alertaRepo);
+                        Console.WriteLine("--------------------------------------------");
+                        break;
+                    case "5":
+                        Console.WriteLine("------ Eliminar Alerta ------");
+                        DeleteAlerta(alertaRepo);
+                        Console.WriteLine("--------------------------------------------");
+                        break;
+                    case "6":
+                        Console.WriteLine("Saliendo del Submenú de Operaciones de Alerta...");
+                        return;
+                    default:
+                        Console.WriteLine("Opción inválida. Por favor, seleccione un número válido.");
+                        break;
+                }
 
+                Console.WriteLine();
+            }
+        }
+        private static void CreateAlerta(AlertaRepository alertaRepo)
+        {
+            Console.WriteLine("------ Crear Alerta...");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Alerta alertaOne = new Alerta();
 
@@ -168,7 +281,7 @@ namespace Application
             // Ingresa los contactos de emergencia
             alertaOne.ContactosEmergencia = new List<ContactoEmergencia>();
 
-            for (int i = 0; i < 2; i++) // Puedes ajustar según la cantidad de contactos que desees ingresar
+            for (int i = 0; i < 2; i++)
             {
                 Console.WriteLine($"Datos del contacto de emergencia {i + 1}:");
                 ContactoEmergencia contacto = new ContactoEmergencia();
@@ -183,10 +296,10 @@ namespace Application
             }
 
             alertaRepo.Insert(alertaOne);
-
-            //-----------------------------------------------------------------------------------//
-
-            Console.WriteLine("------ FindAll Alertas");
+        }
+        private static void FindAllAlertas(AlertaRepository alertaRepo)
+        {
+            Console.WriteLine("------ Mostrar Todas las Alertas...");
 
             var allAlertas = alertaRepo.FindAll();
 
@@ -195,21 +308,21 @@ namespace Application
                 Console.WriteLine($"{item.Id} {item.Ubicacion}{item.Fecha} {item.Hora}{item.Mensaje}{item.Numero}{item.TelefonoContacto}{item.ContactosEmergencia}");
             }
 
-            //-----------------------------------------------------------------------------------//
+        }
+        private static void FindAlertaById(AlertaRepository alertaRepo)
+        {
+            Console.WriteLine("------ Buscar Alerta por ID");
 
-            Console.WriteLine("------ FindById Alerta");
+            var allAlertas = alertaRepo.FindAll();
             var OneAlerta = alertaRepo.FindById(allAlertas.First().Id);
             Console.WriteLine($"{OneAlerta.Id} {OneAlerta.Ubicacion}{OneAlerta.Fecha}{OneAlerta.Mensaje}{OneAlerta.Mensaje} {OneAlerta.Numero} {OneAlerta.TelefonoContacto}{OneAlerta.ContactosEmergencia}");
-
-            //-----------------------------------------------------------------------------------//
-
-            Console.WriteLine("------ Delete Alerta");
-            alertaRepo.Delete(allAlertas.First().Id);
-
-            //-----------------------------------------------------------------------------------//
+        }
+        private static void UpdateAlerta(AlertaRepository alertaRepo)
+        {
+            Console.WriteLine("------ Update Alerta");
 
 
-            Console.WriteLine("------ Update Alarta");
+            var allAlertas = alertaRepo.FindAll();
             Alerta updatedAlerta = allAlertas.Last();
 
             Console.Write($" Ingrese la nueva ubicacion (actual: {updatedAlerta.Ubicacion}): ");
@@ -231,18 +344,75 @@ namespace Application
             updatedAlerta.TelefonoContacto = Console.ReadLine();
 
             alertaRepo.Update(updatedAlerta);
-
         }
+        private static void DeleteAlerta(AlertaRepository alertaRepo)
+        {
+            Console.WriteLine("------ Delete Alerta");
+
+            var allAlertas = alertaRepo.FindAll();
+            alertaRepo.Delete(allAlertas.First().Id);
+        }
+
         #endregion
 
         #region Operaciones ContactoEmergencia
 
         private static void OperacionesContactoEmergencia(ContactoEmergenciaRepository repo)
         {
+            while (true)
+            {
+                Console.WriteLine("------- Submenú de Operaciones de Contacto de Emergencia -----------");
+                Console.WriteLine("1. Crear Contacto de Emergencia");
+                Console.WriteLine("2. Mostrar Todos los Contactos de Emergencia");
+                Console.WriteLine("3. Buscar Contacto de Emergencia por ID");
+                Console.WriteLine("4. Actualizar Contacto de Emergencia");
+                Console.WriteLine("5. Eliminar Contacto de Emergencia");
+                Console.WriteLine("6. Salir");
+                Console.WriteLine("-------------------------------------------");
+                Console.Write("Ingrese el número de la operación que desea realizar: ");
+                string opcion = Console.ReadLine();
 
-            //-----------------------------------------------------------------------------------//
+                switch (opcion)
+                {
+                    case "1":
+                        Console.WriteLine("------ Crear Contacto de Emergencia ------");
+                        CreateContactoEmergencia(repo);
+                        Console.WriteLine("-----------------------------------------");
+                        break;
+                    case "2":
+                        Console.WriteLine("------ Mostrar Todos los Contactos de Emergencia ------");
+                        FindAllContactosEmergencia(repo);
+                        Console.WriteLine("----------------------------------------------------");
+                        break;
+                    case "3":
+                        Console.WriteLine("------ Buscar Contacto de Emergencia por ID ------");
+                        FindContactoEmergenciaById(repo);
+                        Console.WriteLine("-------------------------------------------------");
+                        break;
+                    case "4":
+                        Console.WriteLine("------ Actualizar Contacto de Emergencia ------");
+                        UpdateContactoEmergencia(repo);
+                        Console.WriteLine("--------------------------------------------");
+                        break;
+                    case "5":
+                        Console.WriteLine("------ Eliminar Contacto de Emergencia ------");
+                        DeleteContactoEmergencia(repo);
+                        Console.WriteLine("--------------------------------------------");
+                        break;
+                    case "6":
+                        Console.WriteLine("Saliendo del Submenú de Operaciones de Contacto de Emergencia...");
+                        return;
+                    default:
+                        Console.WriteLine("Opción inválida. Por favor, seleccione un número válido.");
+                        break;
+                }
 
-            Console.WriteLine("------create...");
+                Console.WriteLine();
+            }
+        }
+        private static void CreateContactoEmergencia(ContactoEmergenciaRepository repo)
+        {
+            Console.WriteLine("------ Crear Contacto de Emergencia...");
 
             Console.WriteLine("Ingrese la edad del contacto de emergencia:");
             int edad = Convert.ToInt32(Console.ReadLine());
@@ -265,37 +435,48 @@ namespace Application
             Console.WriteLine("Ingrese el nombre completo del contacto de emergencia:");
             string nombreCompleto = Console.ReadLine();
 
-            ContactoEmergencia contactoEmergencia = new ContactoEmergencia(string.Empty, edad, nombre, apellido, correo, relacion, telefono, nombreCompleto);
+            Console.WriteLine("ID:");
+            string id = string.Empty;
+
+            ContactoEmergencia contactoEmergencia = new ContactoEmergencia(string.Empty, edad, id, nombre, apellido, correo, relacion, telefono, nombreCompleto);
             repo.Insert(contactoEmergencia);
 
-            //-----------------------------------------------------------------------------------//
+        }
+        private static void FindAllContactosEmergencia(ContactoEmergenciaRepository repo)
+        {
+            Console.WriteLine("------ Mostrar Todos los Contactos de Emergencia...");
 
-            Console.WriteLine("------findAll...");
+            var allContactosEmergencia = repo.FindAll();
 
-            var allContactos = repo.FindAll();
-
-            foreach (var item in allContactos)
+            foreach (var contacto in allContactosEmergencia)
             {
-                Console.WriteLine($"{item.Id} {item.FirstName} {item.LastName} {item.Email} {item.Parentezco} {item.TelefonoContacto} {item.FullName}");
+                Console.WriteLine($"{contacto.Id} {contacto.FirstName} {contacto.LastName} {contacto.Email} {contacto.Parentezco} {contacto.TelefonoContacto} {contacto.FullName}");
             }
 
-            //-----------------------------------------------------------------------------------//
+            if (allContactosEmergencia.Count == 0)
+            {
+                Console.WriteLine("No se encontraron registros de Contactos de Emergencia.");
+            }
+        }
+        private static void FindContactoEmergenciaById(ContactoEmergenciaRepository repo)
+        {
+            Console.WriteLine("------ Buscar Contacto de Emergencia por ID");
 
-            Console.WriteLine("------Find by id");
+            var allContactos = repo.FindAll();
 
             var oneContacto = repo.FindById(allContactos.First().Id);
             Console.WriteLine($"{oneContacto.Id} {oneContacto.FirstName} {oneContacto.LastName} {oneContacto.Email} {oneContacto.Parentezco} {oneContacto.TelefonoContacto} {oneContacto.FullName}");
 
-            //-----------------------------------------------------------------------------------//
-
-            Console.WriteLine("------Delete");
-            repo.Delete(allContactos.First().Id);
-
-            //-----------------------------------------------------------------------------------//
+        }
+        public static void UpdateContactoEmergencia(ContactoEmergenciaRepository repo)
+        {
+            Console.WriteLine("------ Actualizar Contacto de Emergencia ------");
 
             Console.WriteLine("------Update");
 
-            ContactoEmergencia updatedContactoEmergencia = allContactos.Last();
+            var allContactosEmergencia = repo.FindAll();
+
+            ContactoEmergencia updatedContactoEmergencia = allContactosEmergencia.Last();
 
             Console.WriteLine("Ingrese la nueva edad del contacto de emergencia:");
             updatedContactoEmergencia.Age = Convert.ToInt32(Console.ReadLine());
@@ -319,8 +500,17 @@ namespace Application
             updatedContactoEmergencia.FullName = Console.ReadLine();
 
             repo.Update(updatedContactoEmergencia);
-        }
 
+        }
+        public static void DeleteContactoEmergencia(ContactoEmergenciaRepository repo)
+        {
+            Console.WriteLine("------ Eliminar Contacto de Emergencia ------");
+
+            var allContactosEmergencia = repo.FindAll();
+            Console.WriteLine("------Delete");
+            repo.Delete(allContactosEmergencia.First().Id);
+
+        }
         #endregion
 
         #region Mayor Operations
@@ -329,18 +519,76 @@ namespace Application
             Connection dbConn = new Connection();
             MayorRepository mayorRepo = new MayorRepository(dbConn);
 
+            while (true)
+            {
+                Console.WriteLine("------- Submenú de Operaciones  -----------");
+                Console.WriteLine("1. Crear Mayor");
+                Console.WriteLine("2. Mostrar Todos los Mayores");
+                Console.WriteLine("3. Buscar Mayor por ID");
+                Console.WriteLine("4. Actualizar Mayor");
+                Console.WriteLine("5. Eliminar Mayor");
+                Console.WriteLine("6. Salir");
+                Console.WriteLine("-------------------------------------------");
+                Console.Write("Ingrese el número de la operación que desea realizar: ");
+                string opcion = Console.ReadLine();
 
+                switch (opcion)
+                {
+                    case "1":
+                        Console.WriteLine("------ Crear Mayor ------");
+                        CreateMayor(mayorRepo);
+                        Console.WriteLine("-------------------------");
+                        break;
+                    case "2":
+                        Console.WriteLine("------ Mostrar Todos los Mayores ------");
+                        FindAllMayors(mayorRepo);
+                        Console.WriteLine("---------------------------------------");
+                        break;
+                    case "3":
+                        Console.WriteLine("------ Buscar Mayor por ID ------");
+                        FindMayorById(mayorRepo);
+                        Console.WriteLine("---------------------------------");
+                        break;
+                    case "4":
+                        Console.WriteLine("------ Actualizar Mayor ------");
+                        UpdateMayor(mayorRepo);
+                        Console.WriteLine("------------------------------");
+                        break;
+                    case "5":
+                        Console.WriteLine("------ Eliminar Mayor ------");
+                        DeleteMayor(mayorRepo);
+                        Console.WriteLine("----------------------------");
+                        break;
+                    case "6":
+                        Console.WriteLine("Saliendo del Submenú de Operaciones CRUD...");
+                        return;
+                    default:
+                        Console.WriteLine("Opción inválida. Por favor, seleccione un número válido.");
+                        break;
+                }
 
-            //-----------------------------------------------------------------------------------//
+                Console.WriteLine();
+            }
+        }
+        private static void CreateMayor(MayorRepository mayorRepo)
+        {
             Console.WriteLine("------ Create Mayor...");
             Mayor mayor = new Mayor();
             mayor.ContactoEmergencia = new List<ContactoEmergencia>();
+
+
+            Console.Write(" Location ");
+            mayor.LocationUrl = "6.803543797836747, -76.24792559070313";
+
+            mayor.ImageUrl = "https://i0.wp.com/www.haciendadelasflores.gt/wp-content/uploads/2017/03/Reglas-para-tener-una-familia-feliz.png?w=1200&ssl=1";
+
 
             Console.Write("Ingrese el Primer Nombre: ");
             mayor.FirstName = Console.ReadLine();
 
             Console.Write("Ingrese el Apellido: ");
             mayor.LastName = Console.ReadLine();
+
 
             int age = 0;
             while (age <= 17)
@@ -364,6 +612,7 @@ namespace Application
                 }
             }
 
+
             Console.Write("Ingrese la Latitud del Hogar: ");
             if (double.TryParse(Console.ReadLine(), out double latitudHogar))
             {
@@ -374,6 +623,8 @@ namespace Application
                 Console.WriteLine("Formato de latitud inválido. Se establecerá en 0.");
                 mayor.LatitudHogar = 0;
             }
+
+
 
             Console.Write("Ingrese la Longitud del Hogar: ");
             if (double.TryParse(Console.ReadLine(), out double longitudHogar))
@@ -386,48 +637,42 @@ namespace Application
                 mayor.LongitudHogar = 0;
             }
 
-            Console.WriteLine("Ingrese la Ubicación Actual:");
-
-            Console.Write("Latitud: ");
-            if (double.TryParse(Console.ReadLine(), out double latitudActual))
-            {
-                Console.Write("Longitud: ");
-                if (double.TryParse(Console.ReadLine(), out double longitudActual))
-                {
-                    mayor.UbicacionActual = new Ubicacion(latitudActual, longitudActual);
-                }
-                else
-                {
-                    Console.WriteLine("Formato de longitud inválido. La ubicación actual no se establecerá.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Formato de latitud inválido. La ubicación actual no se establecerá.");
-            }
+            Console.WriteLine("Ubicación Actual:");
+            Console.WriteLine($"Latitud: {mayor.LatitudHogar}, Longitud: {mayor.LongitudHogar}");
 
 
             Console.WriteLine("Contactos de emergencia:");
+            foreach (var contacto in mayor.ContactoEmergencia)
+            {
+                Console.WriteLine($"Nombre: {contacto.FirstName}, Teléfono: {contacto.TelefonoContacto}");
+            }
+            Console.WriteLine("Ingrese los lugares frecuentes:");
 
-            if (mayor?.ContactoEmergencia != null)
+            List<Ubicacion> lugaresFrecuentes = new List<Ubicacion>();
+
+            while (true)
             {
-                foreach (var contactoEmergencia in mayor.ContactoEmergencia)
-                {
-                    Console.WriteLine($"Nombre: {contactoEmergencia.FirstName}");
-                    Console.WriteLine($"Apellido: {contactoEmergencia.LastName}");
-                    Console.WriteLine($"Nombre completo: {contactoEmergencia.FullName}");
-                    Console.WriteLine($"ID: {contactoEmergencia.Id}");
-                    Console.WriteLine($"Teléfono: {contactoEmergencia.TelefonoContacto}");
-                    Console.WriteLine($"Edad: {contactoEmergencia.Age}");
-                    Console.WriteLine($"Email: {contactoEmergencia.Email}");
-                    Console.WriteLine($"Parentezco: {contactoEmergencia.Parentezco}");
-                    Console.WriteLine("-------------------------------------------------------------");
-                }
+                Console.Write("Nombre (o escriba 'salir' para finalizar): ");
+                string nombre = Console.ReadLine();
+
+                if (nombre.ToLower() == "salir")
+                    break;
+
+                Console.Write("Latitud: ");
+                double latitud = Convert.ToDouble(Console.ReadLine());
+
+                Console.Write("Longitud: ");
+                double longitud = Convert.ToDouble(Console.ReadLine());
+
+                lugaresFrecuentes.Add(new Ubicacion(nombre, latitud, longitud));
             }
-            else
+
+            Console.WriteLine("Lugares frecuentes ingresados:");
+            foreach (var place in lugaresFrecuentes)
             {
-                Console.WriteLine("No hay contactos de emergencia registrados.");
+                Console.WriteLine($"Nombre: {place.Nombre}, Latitud: {place.Latitud}, Longitud: {place.Longitud}");
             }
+
 
             Console.Write("¿Desea agregar información de Alarma de Emergencia? (S/N): ");
             if (Console.ReadLine().ToUpper() == "S")
@@ -474,56 +719,170 @@ namespace Application
                 Console.Write("Ingrese la ubicacion: ");
                 mayor.AlarmaEmergencia.Ubicacion = Console.ReadLine();
             }
+
             mayorRepo.Insert(mayor);
+            mayor.LugaresFrecuentes = lugaresFrecuentes;
 
-            //-----------------------------------------------------------------------------------//
 
+            Console.WriteLine("Mayor creado exitosamente.");
+        }
+        private static void FindAllMayors(MayorRepository mayorRepo)
+
+        {
             Console.WriteLine("------ FindAll Mayor...");
 
-            var allMayor = mayorRepo.FindAll();
+            List<Mayor> mayors = mayorRepo.FindAll();
 
-            foreach (var item in allMayor)
+            if (mayors.Count == 0)
             {
-                Console.WriteLine($"{item.Id}{item.LatitudHogar} {item.LongitudHogar} {item.AlarmaEmergencia}");
+                Console.WriteLine("No se encontraron registros de Mayores.");
             }
+            else
+            {
+                var allMayor = mayorRepo.FindAll();
 
-            //-----------------------------------------------------------------------------------//
+                foreach (var item in allMayor)
+                {
+                    Console.WriteLine($"{item.Id} {item.LatitudHogar} {item.LongitudHogar} {item.UbicacionActual}");
+
+                    Console.WriteLine("Contactos de emergencia:");
+                    foreach (var contacto in item.ContactoEmergencia)
+                    {
+                        Console.WriteLine($" Nombre: {contacto.FirstName}, Apellido: {contacto.LastName}, Nombre completo: {contacto.FullName},Id: {contacto.Id}, Edad: {contacto.Age}, Email; {contacto.Email} Teléfono: {contacto.TelefonoContacto}");
+                    }
+                }
+            }
+        }
+        private static void FindMayorById(MayorRepository mayorRepo)
+        {
 
             Console.WriteLine("------ FindById Mayor");
 
+            var allMayor = mayorRepo.FindAll();
+
+
             var oneMayor = mayorRepo.FindById(allMayor.First().Id);
-            Console.WriteLine($"{oneMayor.Id} {oneMayor.LatitudHogar} {oneMayor.LongitudHogar} {oneMayor.AlarmaEmergencia}");
+            Console.WriteLine($"{oneMayor.Id} {oneMayor.LatitudHogar} {oneMayor.LongitudHogar} {oneMayor.UbicacionActual}");
 
-
-            //-----------------------------------------------------------------------------------//
-
-            Console.WriteLine("------ Delete Mayor");
-            mayorRepo.Delete(allMayor.First().Id);
-
-
-            //-----------------------------------------------------------------------------------//
+            Console.WriteLine("Contactos de emergencia:");
+            foreach (var contacto in oneMayor.ContactoEmergencia)
+            {
+                Console.WriteLine($"Nombre: {contacto.FullName}, Teléfono: {contacto.TelefonoContacto}");
+            }
+        }
+        private static void UpdateMayor(MayorRepository mayorRepo)
+        {
 
             Console.WriteLine("------ Update Mayor");
 
+            var allMayor = mayorRepo.FindAll();
+            var oneMayor = mayorRepo.FindById(allMayor.First().Id);
+
             Mayor updatedMayor = allMayor.Last();
+            updatedMayor.Id = "324";
+            oneMayor.AlarmaEmergencia = null;
+            oneMayor.LatitudHogar = 0;
+            oneMayor.LongitudHogar = 0;
 
-            Console.Write("Ingrese el nuevo ID: ");
-            updatedMayor.Id = Console.ReadLine();
+            mayorRepo.Update(updatedMayor);
+        }
+        private static void DeleteMayor(MayorRepository mayorRepo)
+        {
+            Console.WriteLine("------ Delete Mayor");
 
-            int nuevaEdad = updatedMayor.Age;
-            while (nuevaEdad <= 17)
+            var allMayor = mayorRepo.FindAll();
+            mayorRepo.Delete(allMayor.First().Id);
+        }
+        #endregion
+
+        #region Menor Operations
+        private static void PerformMenorOperations()
+        {
+            Connection dbConn = new Connection();
+            MenorRepository menorRepo = new MenorRepository(dbConn);
+
+            while (true)
             {
-                Console.Write("Ingrese la nueva Edad: ");
+                Console.WriteLine("------- Submenú de Operaciones para Menores -----------");
+                Console.WriteLine("1. Crear Menor");
+                Console.WriteLine("2. Mostrar Todos los Menores");
+                Console.WriteLine("3. Buscar Menor por ID");
+                Console.WriteLine("4. Actualizar Menor");
+                Console.WriteLine("5. Eliminar Menor");
+                Console.WriteLine("6. Salir");
+                Console.WriteLine("-------------------------------------------");
+                Console.Write("Ingrese el número de la operación que desea realizar: ");
+                string opcion = Console.ReadLine();
 
-                if (int.TryParse(Console.ReadLine(), out nuevaEdad))
+                switch (opcion)
                 {
-                    if (nuevaEdad <= 17)
+                    case "1":
+                        Console.WriteLine("------ Crear Menor ------");
+                        CreateMenor(menorRepo);
+                        Console.WriteLine("-------------------------");
+                        break;
+                    case "2":
+                        Console.WriteLine("------ Mostrar Todos los Menores ------");
+                        FindAllMenores(menorRepo);
+                        Console.WriteLine("---------------------------------------");
+                        break;
+                    case "3":
+                        Console.WriteLine("------ Buscar Menor por ID ------");
+                        FindMenorById(menorRepo);
+                        Console.WriteLine("---------------------------------");
+                        break;
+                    case "4":
+                        Console.WriteLine("------ Actualizar Menor ------");
+                        UpdateMenor(menorRepo);
+                        Console.WriteLine("------------------------------");
+                        break;
+                    case "5":
+                        Console.WriteLine("------ Eliminar Menor ------");
+                        DeleteMenor(menorRepo);
+                        Console.WriteLine("----------------------------");
+                        break;
+                    case "6":
+                        Console.WriteLine("Saliendo del Submenú de Operaciones CRUD para Menores...");
+                        return;
+                    default:
+                        Console.WriteLine("Opción inválida. Por favor, seleccione un número válido.");
+                        break;
+                }
+
+                Console.WriteLine();
+            }
+        }
+        private static void CreateMenor(MenorRepository menorRepo)
+        {
+            Console.WriteLine("------ Create Menor...");
+            Menor menor = new Menor();
+            menor.ContactoEmergencia = new List<ContactoEmergencia>();
+
+            Console.Write(" Location ");
+            menor.LocationUrl = "6.803543797836747, -76.24792559070313";
+
+            menor.ImageUrl = "https://i0.wp.com/www.haciendadelasflores.gt/wp-content/uploads/2017/03/Reglas-para-tener-una-familia-feliz.png?w=1200&ssl=1";
+
+            Console.Write("Ingrese el Primer Nombre: ");
+            menor.FirstName = Console.ReadLine();
+
+            Console.Write("Ingrese el Apellido: ");
+            menor.LastName = Console.ReadLine();
+
+            int age = 0;
+            while (age >= 17)
+            {
+                Console.Write("Ingrese la Edad: ");
+
+                if (int.TryParse(Console.ReadLine(), out age))
+                {
+                    if (age >= 17)
                     {
-                        Console.WriteLine("Esta en la seccion mayor de edad. Debe ingresar una edad mayor a 18 años.");
+                        Console.WriteLine("Esta en la sección de menores de edad, debe ingresar una edad menor a 18 años.");
                     }
                     else
                     {
-                        updatedMayor.Age = nuevaEdad;
+                        menor.Age = age;
                     }
                 }
                 else
@@ -532,71 +891,157 @@ namespace Application
                 }
             }
 
-            Console.Write("Ingrese el nuevo número de emergencia al que desea comunicarse: ");
-            if (double.TryParse(Console.ReadLine(), out double nuevoNumeroEmergencia))
+            Console.Write("Ingrese la Latitud del Hogar: ");
+            if (double.TryParse(Console.ReadLine(), out double latitudHogar))
             {
-                updatedMayor.LatitudHogar = nuevoNumeroEmergencia;
+                menor.LatitudHogar = latitudHogar;
             }
             else
             {
-                Console.WriteLine("Formato de número de emergencia inválido. Se mantendrá el valor anterior.");
+                Console.WriteLine("Formato de latitud inválido. Se establecerá en 0.");
+                menor.LatitudHogar = 0;
             }
 
-            Console.Write("Ingrese su nueva ubicación: ");
-            if (double.TryParse(Console.ReadLine(), out double NUbicacion))
+            Console.Write("Ingrese la Longitud del Hogar: ");
+            if (double.TryParse(Console.ReadLine(), out double longitudHogar))
             {
-                updatedMayor.LongitudHogar = NUbicacion;
+                menor.LongitudHogar = longitudHogar;
             }
             else
             {
-                Console.WriteLine("Formato de ubicación inválido. Se mantendrá el valor anterior.");
+                Console.WriteLine("Formato de longitud inválido. Se establecerá en 0.");
+                menor.LongitudHogar = 0;
             }
 
-            mayorRepo.Update(updatedMayor);
-        }
-        #endregion
+            Console.WriteLine("Ubicación Actual:");
+            Console.WriteLine($"Latitud: {menor.LatitudHogar}, Longitud: {menor.LongitudHogar}");
 
-        #region Menor Operations
-
-        private static void PerformMenorOperations()
-        {
-            Connection dbConn = new Connection();
-            MenorRepository menorRepo = new MenorRepository(dbConn);
-
-            Console.WriteLine("------ Create Menor...");
-
-            Menor menor = new Menor
+            Console.WriteLine("Contactos de emergencia:");
+            foreach (var contacto in menor.ContactoEmergencia)
             {
+                Console.WriteLine($"Nombre: {contacto.FirstName}, Teléfono: {contacto.TelefonoContacto}");
+            }
+            Console.WriteLine("Ingrese los lugares frecuentes:");
 
-                LatitudHogar = 222222,
-                LongitudHogar = 333333,
-                AlarmaEmergencia = null
+            List<Ubicacion> lugaresFrecuentes = new List<Ubicacion>();
 
+            while (true)
+            {
+                Console.Write("Nombre (o escriba 'salir' para finalizar): ");
+                string nombre = Console.ReadLine();
 
+                if (nombre.ToLower() == "salir")
+                    break;
 
-            };
+                Console.Write("Latitud: ");
+                double latitud = Convert.ToDouble(Console.ReadLine());
 
+                Console.Write("Longitud: ");
+                double longitud = Convert.ToDouble(Console.ReadLine());
+
+                lugaresFrecuentes.Add(new Ubicacion(nombre, latitud, longitud));
+            }
+
+            Console.WriteLine("Lugares frecuentes ingresados:");
+            foreach (var place in lugaresFrecuentes)
+            {
+                Console.WriteLine($"Nombre: {place.Nombre}, Latitud: {place.Latitud}, Longitud: {place.Longitud}");
+            }
+
+            Console.Write("¿Desea agregar información de Alarma de Emergencia? (S/N): ");
+            if (Console.ReadLine().ToUpper() == "S")
+            {
+                menor.AlarmaEmergencia = new Alerta();
+
+                Console.Write("Fecha: ");
+                menor.AlarmaEmergencia.Fecha = DateTime.UtcNow;
+
+                Console.Write("Hora: ");
+                int num;
+                bool exit = int.TryParse(Console.ReadLine(), out num);
+                if (exit)
+                {
+                    menor.AlarmaEmergencia.Hora = num;
+                }
+                else
+                {
+                    Console.WriteLine("El valor ingresado no es un número válido.");
+                }
+
+                Console.Write("Ingrese el Mensaje de la Alarma: ");
+                menor.AlarmaEmergencia.Mensaje = Console.ReadLine();
+
+                Console.Write("Ingrese el numero de telefono: ");
+                menor.AlarmaEmergencia.TelefonoContacto = Console.ReadLine();
+
+                Console.Write("Numero de la alarma: ");
+                int numero;
+                bool exito = int.TryParse(Console.ReadLine(), out numero);
+                if (exito)
+                {
+                    menor.AlarmaEmergencia.Numero = numero;
+                }
+                else
+                {
+                    Console.WriteLine("El valor ingresado no es un número válido.");
+                }
+
+                Console.Write("Ingrese la ubicacion: ");
+                menor.AlarmaEmergencia.Ubicacion = Console.ReadLine();
+            }
 
             menorRepo.Insert(menor);
+            menor.LugaresFrecuentes = lugaresFrecuentes;
 
-            Console.WriteLine("------ FindAll menor...");
+            Console.WriteLine("Menor creado exitosamente.");
+        }
+        private static void FindAllMenores(MenorRepository menorRepo)
+        {
+            Console.WriteLine("------ FindAll Menor...");
+
+            List<Menor> menores = menorRepo.FindAll();
+
+            if (menores.Count == 0)
+            {
+                Console.WriteLine("No se encontraron registros de Menores.");
+            }
+            else
+            {
+                var allMenor = menorRepo.FindAll();
+
+                foreach (var item in allMenor)
+                {
+                    Console.WriteLine($"{item.Id} {item.LatitudHogar} {item.LongitudHogar} {item.UbicacionActual}");
+
+                    Console.WriteLine("Contactos de emergencia:");
+                    foreach (var contacto in item.ContactoEmergencia)
+                    {
+                        Console.WriteLine($" Nombre: {contacto.FirstName}, Apellido: {contacto.LastName}, Nombre completo: {contacto.FullName},Id: {contacto.Id}, Edad: {contacto.Age}, Email; {contacto.Email} Teléfono: {contacto.TelefonoContacto}");
+                    }
+                }
+            }
+        }
+        private static void FindMenorById(MenorRepository menorRepo)
+        {
+            Console.WriteLine("------ FindById Menor");
 
             var allMenor = menorRepo.FindAll();
 
-            foreach (var item in allMenor)
-            {
-                Console.WriteLine($"{item.Id}{item.LatitudHogar} {item.LongitudHogar} {item.AlarmaEmergencia}");
-            }
-
-            Console.WriteLine("------ FindById Menor");
-
             var oneMenor = menorRepo.FindById(allMenor.First().Id);
-            Console.WriteLine($"{oneMenor.Id} {oneMenor.LatitudHogar} {oneMenor.LongitudHogar} {oneMenor.AlarmaEmergencia}");
+            Console.WriteLine($"{oneMenor.Id} {oneMenor.LatitudHogar} {oneMenor.LongitudHogar} {oneMenor.UbicacionActual}");
 
-            Console.WriteLine("------ Delete Menor");
-            menorRepo.Delete(allMenor.First().Id);
-
+            Console.WriteLine("Contactos de emergencia:");
+            foreach (var contacto in oneMenor.ContactoEmergencia)
+            {
+                Console.WriteLine($"Nombre: {contacto.FullName}, Teléfono: {contacto.TelefonoContacto}");
+            }
+        }
+        private static void UpdateMenor(MenorRepository menorRepo)
+        {
             Console.WriteLine("------ Update Menor");
+
+            var allMenor = menorRepo.FindAll();
+            var oneMenor = menorRepo.FindById(allMenor.First().Id);
 
             Menor updatedMenor = allMenor.Last();
             updatedMenor.Id = "324";
@@ -606,20 +1051,76 @@ namespace Application
 
             menorRepo.Update(updatedMenor);
         }
+        private static void DeleteMenor(MenorRepository menorRepo)
+        {
+            Console.WriteLine("------ Delete Menor");
+
+            var allMenor = menorRepo.FindAll();
+            menorRepo.Delete(allMenor.First().Id);
+        }
 
         #endregion
 
         #region Ubicacion Operations
-
         private static void PerformUbicacionOperations()
         {
             Connection dbConn = new Connection();
             UbicacionRepository ubicacionRepo = new UbicacionRepository(dbConn);
 
-            //-----------------------------------------------------------------------------------//
+            while (true)
+            {
+                Console.WriteLine("------- Submenú de Operaciones de Ubicación -----------");
+                Console.WriteLine("1. Crear Ubicación");
+                Console.WriteLine("2. Mostrar Todas las Ubicaciones");
+                Console.WriteLine("3. Buscar Ubicación por ID");
+                Console.WriteLine("4. Actualizar Ubicación");
+                Console.WriteLine("5. Eliminar Ubicación");
+                Console.WriteLine("6. Salir");
+                Console.WriteLine("-------------------------------------------");
+                Console.Write("Ingrese el número de la operación que desea realizar: ");
+                string opcion = Console.ReadLine();
 
+                switch (opcion)
+                {
+                    case "1":
+                        Console.WriteLine("------ Crear Ubicación ------");
+                        CreateUbicacion(ubicacionRepo);
+                        Console.WriteLine("-----------------------------------------");
+                        break;
+                    case "2":
+                        Console.WriteLine("------ Mostrar Todas las Ubicaciones ------");
+                        FindAllUbicaciones(ubicacionRepo);
+                        Console.WriteLine("----------------------------------------------------");
+                        break;
+                    case "3":
+                        Console.WriteLine("------ Buscar Ubicación por ID ------");
+                        FindUbicacionById(ubicacionRepo);
+                        Console.WriteLine("-------------------------------------------------");
+                        break;
+                    case "4":
+                        Console.WriteLine("------ Actualizar Ubicación ------");
+                        UpdateUbicacion(ubicacionRepo);
+                        Console.WriteLine("--------------------------------------------");
+                        break;
+                    case "5":
+                        Console.WriteLine("------ Eliminar Ubicación ------");
+                        DeleteUbicacion(ubicacionRepo);
+                        Console.WriteLine("--------------------------------------------");
+                        break;
+                    case "6":
+                        Console.WriteLine("Saliendo del Submenú de Operaciones de Ubicación...");
+                        return;
+                    default:
+                        Console.WriteLine("Opción inválida. Por favor, seleccione un número válido.");
+                        break;
+                }
 
-            Console.WriteLine("------ Create Ubicacion...");
+                Console.WriteLine();
+            }
+        }
+        private static void CreateUbicacion(UbicacionRepository ubicacionRepo)
+        {
+            Console.WriteLine("------ Crear Ubicación...");
 
             Console.Write("Ingrese el Nombre de su ubicacion: ");
             string nombre = Console.ReadLine();
@@ -650,32 +1151,31 @@ namespace Application
             {
                 Console.WriteLine("Formato de longitud inválido.");
             }
-
-            //-----------------------------------------------------------------------------------//
-            Console.WriteLine("------ FindAll Ubicacion...");
-
+        }
+        private static void FindAllUbicaciones(UbicacionRepository ubicacionRepo)
+        {
             var allUbicacion = ubicacionRepo.FindAll();
 
             foreach (var item in allUbicacion)
             {
                 Console.WriteLine($"{item.Latitud}{item.Id} {item.Nombre} {item.Longitud}");
             }
+        }
+        private static void FindUbicacionById(UbicacionRepository ubicacionRepo)
+        {
+            Console.WriteLine("------ Buscar Ubicación por ID");
 
-            //-----------------------------------------------------------------------------------//
-            Console.WriteLine("------ FindById Ubicacion");
+            var allUbicacion = ubicacionRepo.FindAll();
 
             var oneMenor = ubicacionRepo.FindById(allUbicacion.First().Id);
             Console.WriteLine($"{oneMenor.Id} {oneMenor.Nombre} {oneMenor.Longitud} {oneMenor.Latitud}");
+        }
+        private static void UpdateUbicacion(UbicacionRepository ubicacionRepo)
+        {
+            Console.WriteLine("------ Actualizar Ubicación");
 
-
-            //-----------------------------------------------------------------------------------//
-            Console.WriteLine("------ Delete Ubicacion");
-            ubicacionRepo.Delete(allUbicacion.First().Id);
-
-            //-----------------------------------------------------------------------------------//
-            Console.WriteLine("------ Update Ubicacion");
-
-            Ubicacion updateUbicacion = allUbicacion.Last();
+            var allUbicaciones = ubicacionRepo.FindAll();
+            Ubicacion updateUbicacion = allUbicaciones.Last();
 
             Console.WriteLine(" ID ");
             updateUbicacion.Id = "1234567";
@@ -700,270 +1200,15 @@ namespace Application
 
             Console.WriteLine($"Succes Update... {updateUbicacion.Nombre}");
         }
-
-        #endregion
-
-
-        /*LineaEmergencia lineaEmergencia = new LineaEmergencia(string.Empty, "1234", "Bogotaa");
-        lineaEmergenciaRepo.Insert(lineaEmergencia);
-
-        Console.WriteLine("------findAll...");
-
-        var all = lineaEmergenciaRepo.FindAll();
-
-        foreach (var item in all)
+        private static void DeleteUbicacion(UbicacionRepository ubicacionRepo)
         {
-            Console.WriteLine($"{item.Id}{item.NumeroEmergencia} {item.UbicacionEmergencia}");
+            Console.WriteLine("------ Eliminar Ubicación");
+
+            var allUbicaciones = ubicacionRepo.FindAll();
+            ubicacionRepo.Delete(allUbicaciones.First().Id);
+            Console.WriteLine("Ubicación eliminada exitosamente.");
         }
-
-        Console.WriteLine("------Find by id");
-
-
-
-        var oneEntity = lineaEmergenciaRepo.FindById(all.First().Id);
-        Console.WriteLine($"{oneEntity.Id} {oneEntity.NumeroEmergencia} {oneEntity.UbicacionEmergencia} {oneEntity.RealizarLlamadaEmergencia}");
-
-
-        Console.ForegroundColor = ConsoleColor.Cyan;
-        Alerta alertaOne = new Alerta
-        {
-            Id = "",
-            Ubicacion = "Bogota",
-            Fecha = DateTime.Now,
-            Hora = DateTime.Now.Hour,
-            Mensaje = "Ayuda, estoy en peligro",
-            Numero = 1234567,  
-            TelefonoContacto = "3156712473",
-            ContactosEmergencia = new List<ContactoEmergencia>
-            {
-                new ContactoEmergencia { FullName = "Nombre1", TelefonoContacto = "3107568976" },
-                new ContactoEmergencia { FullName = "Nombre2", TelefonoContacto = "3209876458" }
-
-            }
-
-        };
-
-        alertaRepo.Insert(alertaOne);
-
-        Console.WriteLine("------findAll Alertas");
-
-        var allAlertas = alertaRepo.FindAll();
-
-        foreach (var item in allAlertas)
-        {
-            Console.WriteLine($"{item.Id} {item.Ubicacion}{item.Fecha} {item.Hora}{item.Mensaje}{item.Numero}{item.TelefonoContacto}{item.ContactosEmergencia}");
-        }
-
-        Console.WriteLine("------find by id");
-        var OneAlerta = alertaRepo.FindById(allAlertas.First().Id);
-        Console.WriteLine($"{OneAlerta.Id} {OneAlerta.Ubicacion}{OneAlerta.Fecha}{OneAlerta.Mensaje}{OneAlerta.Mensaje} {OneAlerta.Numero} {OneAlerta.TelefonoContacto}{OneAlerta.ContactosEmergencia}");
-
-
-
-        Console.WriteLine("------Delete");
-        lineaEmergenciaRepo.Delete(all.First().Id);
-
-
-        Console.WriteLine("------Update");
-
-        LineaEmergencia updatedLineaEmergencia = all.Last();
-        updatedLineaEmergencia.NumeroEmergencia = "123";
-        updatedLineaEmergencia.UbicacionEmergencia = "Cali";
-
-        lineaEmergenciaRepo.Update(updatedLineaEmergencia);
-
-        Console.ReadLine();
-
-
-
-
-
-        Console.WriteLine("------Create...");
-          Ubicacion ubicacion = new Ubicacion(double.Empty, "1234", "Bogotaa");
-          lineaEmergenciaRepo.Insert(lineaEmergencia);*/
-
-
-        /* LineaEmergencia lineaEmergencia = new LineaEmergencia(123);
-         Ubicacion lugaresFrecuentes = new Ubicacion();
-         Alerta alerta = new Alerta();
-         List<Usuario> usuarios = new List<Usuario>();
-         List<Menor> menores = new List<Menor>();
-         List<Mayor> mayores = new List<Mayor>();
-
-         while (true)
-         {
-             Console.WriteLine("************ Menú Principal **********");
-             Console.WriteLine("1. Gestionar Usuario");
-             Console.WriteLine("2. Línea de Emergencia");
-             Console.WriteLine("3. Gestionar Lugares Frecuentes");
-             Console.WriteLine("4. Enviar Alerta");
-             Console.WriteLine("5. Agregar Mayor");
-             Console.WriteLine("6. Agregar Menor");  
-             Console.WriteLine("7. Salir");
-             Console.Write("Seleccione una opción: ");
-
-             string opcion = Console.ReadLine();
-
-             switch (opcion)
-             {
-                 case "1":
-                     // Agregar un nuevo usuario
-                     Console.Write("Ingrese el nombre: ");
-                     string nombre = Console.ReadLine();
-                     Console.Write("Ingrese el apellido: ");
-                     string apellido = Console.ReadLine();
-                     Console.Write("Ingrese la edad: ");
-                     int edad;
-                     if (int.TryParse(Console.ReadLine(), out edad))
-                     {
-                         Usuario nuevoUsuario = new Usuario
-                         {
-                             FirstName = nombre,
-                             LastName = apellido,
-                             Age = edad
-                         };
-                         usuarios.Add(nuevoUsuario);
-                         Console.WriteLine("Usuario agregado con éxito.");
-                     }
-                     else
-                     {
-                         Console.WriteLine("La edad ingresada no es válida.");
-                     }
-                     break;
-
-                 case "2":
-                     // Manejar la línea de emergencia
-                     Console.Write("Ingrese el número de emergencia: ");
-                     if (int.TryParse(Console.ReadLine(), out int numeroEmergencia))
-                     {
-                         lineaEmergencia.NumeroEmergencia = numeroEmergencia;
-
-                         Console.Write("Ingrese la ubicación de emergencia: ");
-                         string ubicacionEmergencia = Console.ReadLine();
-                         lineaEmergencia.UbicacionEmergencia = ubicacionEmergencia;
-
-                         // Realizar la llamada de emergencia
-                         lineaEmergencia.RealizarLlamadaEmergencia();
-                     }
-                     else
-                     {
-                         Console.WriteLine("Número de emergencia no válido.");
-                     }
-                     break;
-
-
-                 case "3":
-                     // Gestionar lugares frecuentes
-                     Console.Write("Ingrese un lugar frecuente: ");
-                     string lugarFrecuente = Console.ReadLine();
-                     Console.Write("Ingrese la latitud: ");
-                     if (double.TryParse(Console.ReadLine(), out double latitud))
-                     {
-                         Console.Write("Ingrese la longitud: ");
-                         if (double.TryParse(Console.ReadLine(), out double longitud))
-                         {
-                             //lugaresFrecuentes.AgregarLugar(lugarFrecuente, latitud, longitud);
-                             Console.WriteLine($"Lugar frecuente '{lugarFrecuente}' agregado con éxito.");
-                         }
-                         else
-                         {
-                             Console.WriteLine("Longitud no válida.");
-                         }
-                     }
-                     else
-                     {
-                         Console.WriteLine("Latitud no válida.");
-                     }
-                     break;
-
-                 case "4":
-                     // Enviar alerta
-                     if (usuarios.Count == 0)
-                     {
-                         Console.WriteLine("No se pueden enviar alertas, no hay usuarios registrados.");
-                     }
-                     else
-                     {
-                         Console.WriteLine("Enviando alerta a los contactos de emergencia...");
-
-                         // Crear una nueva alerta
-                         Alerta nuevaAlerta = new Alerta
-                         {
-                             Ubicacion = "Ubicación de la alerta",
-                             Fecha = DateTime.Now,
-                             Mensaje = "AYUDA!!! ESTOY EN PELIGRO"
-                         };
-
-                         nuevaAlerta.ContactosEmergencia = usuarios.Select(p => new ContactoEmergencia
-                         {
-                             FirstName = p.FirstName,
-                             LastName = p.LastName,
-                             Parentezco = "Familiar",
-                             TelefonoContacto = "Número de Teléfono"
-                         }).ToList();
-
-                         nuevaAlerta.EnviarAlerta();
-                         Console.WriteLine("Alerta enviada con éxito.");
-                     }
-                     break;
-
-
-                 case "5":
-                     // Agregar un mayor
-                     Console.Write("Ingrese el nombre de la persona: ");
-                     string nombreMayor = Console.ReadLine();
-                     Console.Write("Ingrese el apellido de la persona: ");
-                     string apellidoMayor = Console.ReadLine();
-                     Console.Write("Ingrese la edad de la persona: ");
-                     int edadMayor;
-                     if (int.TryParse(Console.ReadLine(), out edadMayor))
-                     {
-                         Mayor nuevoMayor = new Mayor
-                         {
-                             FirstName = nombreMayor,
-                             LastName = apellidoMayor,
-                             Age = edadMayor
-                         };
-                         mayores.Add(nuevoMayor);
-                         Console.WriteLine("Mayor agregado con éxito.");
-                     }
-                     else
-                     {
-                         Console.WriteLine("La edad ingresada no es válida.");
-                     }
-                     break;
-                 case "6":
-                     // Agregar un menor
-                     Console.Write("Ingrese el nombre del menor: ");
-                     string nombreMenor = Console.ReadLine();
-                     Console.Write("Ingrese el apellido del menor: ");
-                     string apellidoMenor = Console.ReadLine();
-                     Console.Write("Ingrese la edad del menor: ");
-                     int edadMenor;
-                     if (int.TryParse(Console.ReadLine(), out edadMenor))
-                     {
-                         Menor nuevoMenor = new Menor(nombreMenor, apellidoMenor, edadMenor);
-                         menores.Add(nuevoMenor);
-                         Console.WriteLine("Menor agregado con éxito.");
-                     }
-                     else
-                     {
-                         Console.WriteLine("La edad ingresada no es válida.");
-                     }
-                     break;
-
-
-                 case "7":
-                     // Salir del programa
-                     Console.WriteLine("Saliendo del programa.");
-                     Environment.Exit(0);
-                     break;
-
-                 default:
-                     Console.WriteLine("Opción no válida. Por favor, seleccione una opción válida.");
-                     break;
-             }
-         }*/
-
     }
+    #endregion
 }
+

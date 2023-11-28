@@ -84,12 +84,13 @@ namespace Application.Data.Respositories
                 {
                     var mayorModel = snapshot.ConvertTo<FirestoreModels.Mayor>();
                     mayorModel.Id = snapshot.Id;
+
                     MessageLogger.LogInformationMessage($"Succes FindById... {id}");
                     return MapFirebaseModelToEntity(mayorModel);
                 }
                 else
                 {
-                    MessageLogger.LogWarningMessage("Colletion lineaEmergencia doesn't exist");
+                    MessageLogger.LogWarningMessage("Colletion  doesn't exist");
                     return null;
 
                 }
@@ -144,7 +145,25 @@ namespace Application.Data.Respositories
         {
             FirestoreModels.Alerta alarmaEmergencia = null;
             List<FirestoreModels.Ubicacion> lugaresFrecuentes = null;
+            List<FirestoreModels.Ubicacion> _ubicacionActual = null;
             List<FirestoreModels.ContactoEmergencia> _contactoEmergencia = null;
+
+            if (entity.ContactoEmergencia != null)
+            {
+                _contactoEmergencia = entity.ContactoEmergencia.Select(x =>
+                    new FirestoreModels.ContactoEmergencia
+                    {
+
+                        FirstName = x.FirstName,
+                        LastName = x.LastName,
+                        FullName = x.FullName,
+                        Id = x.Id,
+                        Age = x.Age,
+                        Email = x.Email,
+                        Parentezco = x.Parentezco,
+                        TelefonoContacto = x.TelefonoContacto
+                    }).ToList();
+            }
 
             if (entity.AlarmaEmergencia != null)
             {
@@ -175,19 +194,15 @@ namespace Application.Data.Respositories
                     }).ToList();
             }
 
-            if (entity.ContactoEmergencia != null)
+            if (entity.UbicacionActual != null)
             {
-                _contactoEmergencia = entity.ContactoEmergencia.Select(x =>
-                    new FirestoreModels.ContactoEmergencia
+                _ubicacionActual = entity.UbicacionActual.Select(x =>
+                    new FirestoreModels.Ubicacion
                     {
                         Id = x.Id,
-                        Age = x.Age,
-                        Email = x.Email,
-                        FirstName = x.FirstName,
-                        LastName = x.LastName,
-                        FullName = x.FullName,
-                        Parentezco = x.Parentezco,
-                        TelefonoContacto = x.TelefonoContacto
+                        Longitud = x.Longitud,
+                        Nombre = x.Nombre,
+                        Latitud = x.Latitud
                     }).ToList();
             }
 
@@ -198,10 +213,13 @@ namespace Application.Data.Respositories
                 Age = entity.Age,
                 Id = entity.Id,
                 LugaresFrecuentes = lugaresFrecuentes,
+                UbicacionActual = _ubicacionActual,
                 AlarmaEmergencia = alarmaEmergencia,
-                ContactoEmergencia = _contactoEmergencia,
+                ContactoEmergencia = entity.ContactoEmergencia?.Select(x => new FirestoreModels.ContactoEmergencia { Id = x.Id, Age = x.Age, Email = x.Email, FirstName = x.FirstName, LastName = x.LastName, FullName = x.FullName, Parentezco = x.Parentezco, TelefonoContacto = x.TelefonoContacto }).ToList(),
                 LatitudHogar = entity.LatitudHogar,
-                LongitudHogar = entity.LongitudHogar
+                LongitudHogar = entity.LongitudHogar,
+                ImageUrl = entity.ImageUrl,
+                LocationUrl = entity.LocationUrl
             };
 
         }
@@ -209,6 +227,7 @@ namespace Application.Data.Respositories
         {
             Alerta alarmaEmergencia = null;
             List<Ubicacion> lugaresFrecuentes = null;
+            List<Ubicacion> _ubicacionActual = null;
             List<ContactoEmergencia> _contactoEmergencia = null;
 
             if (model.AlarmaEmergencia != null)
@@ -237,22 +256,33 @@ namespace Application.Data.Respositories
                             Latitud = x.Latitud
                         }).ToList();
                 }
+                if (model.UbicacionActual != null)
+                {
+                    _ubicacionActual = model.UbicacionActual.Select(x =>
+                        new Ubicacion
+                        {
+                            Id = x.Id,
+                            Longitud = x.Longitud,
+                            Nombre = x.Nombre,
+                            Latitud = x.Latitud
+                        }).ToList();
+                }
 
                 if (model.ContactoEmergencia != null)
                 {
                     _contactoEmergencia = model.ContactoEmergencia.Select(x =>
-                        new ContactoEmergencia
-                        {
-                            Id = x.Id,
-                            Age = x.Age,
-                            Email = x.Email,
-                            FirstName = x.FirstName,
-                            LastName = x.LastName,
-                            FullName = x.FullName,
-                            Parentezco = x.Parentezco,
-                            TelefonoContacto = x.TelefonoContacto
-                            
-                        }).ToList();
+                          new ContactoEmergencia
+                          {
+                              Id = x.Id,
+                              Age = x.Age,
+                              Email = x.Email,
+                              FirstName = x.FirstName,
+                              LastName = x.LastName,
+                              FullName = x.FullName,
+                              Parentezco = x.Parentezco,
+                              TelefonoContacto = x.TelefonoContacto
+
+                          }).ToList();
                 }
             }
 
@@ -263,10 +293,14 @@ namespace Application.Data.Respositories
                 Age = model.Age,
                 Id = model.Id,
                 LugaresFrecuentes = lugaresFrecuentes,
+                UbicacionActual= _ubicacionActual,
                 AlarmaEmergencia = alarmaEmergencia,
                 ContactoEmergencia = _contactoEmergencia,
                 LatitudHogar = model.LatitudHogar,
-                LongitudHogar = model.LongitudHogar
+                LongitudHogar = model.LongitudHogar,
+                ImageUrl= model.ImageUrl,
+                LocationUrl= model.LocationUrl
+
             };
         }
     }

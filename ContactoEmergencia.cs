@@ -29,7 +29,10 @@ namespace Application
             this.telefonoContacto = telefonoContacto;
         }
 
-
+        public ContactoEmergencia(string id, int age, string firstName, string lastName, string fullName, string email, string parentezco, string telefonoContacto, string? nombreCompleto) : this(id, age, firstName, lastName, fullName, email, parentezco, telefonoContacto)
+        {
+            NombreCompleto = nombreCompleto;
+        }
 
         public string Id
         {
@@ -90,6 +93,6 @@ namespace Application
            get => fullName;
            set => fullName = value;
         }
-
+        public string? NombreCompleto { get; }
     }
 }

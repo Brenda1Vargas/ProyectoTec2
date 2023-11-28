@@ -136,6 +136,9 @@ namespace Application.Data.Respositories
         private FirestoreModels.Menor MapEntityToFirestoremodel(Menor entity)
         {
             FirestoreModels.Alerta alarmaEmergencia = null;
+            List<FirestoreModels.Ubicacion> lugaresFrecuentes = null;
+            List<FirestoreModels.ContactoEmergencia> _contactoEmergencia = null;
+
 
             if (entity.AlarmaEmergencia != null)
             {
@@ -154,18 +157,53 @@ namespace Application.Data.Respositories
 
             }
 
+
+            if (entity.LugaresFrecuentes != null)
+            {
+                lugaresFrecuentes = entity.LugaresFrecuentes.Select(x =>
+                    new FirestoreModels.Ubicacion
+                    {
+                        Id = x.Id,
+                        Longitud = x.Longitud,
+                        Nombre = x.Nombre,
+                        Latitud = x.Latitud
+                    }).ToList();
+            }
+
+            if (entity.ContactoEmergencia != null)
+            {
+                _contactoEmergencia = entity.ContactoEmergencia.Select(x =>
+                    new FirestoreModels.ContactoEmergencia
+                    {
+                        Id = x.Id,
+                        Age = x.Age,
+                        Email = x.Email,
+                        FirstName = x.FirstName,
+                        LastName = x.LastName,
+                        FullName = x.FullName,
+                        Parentezco = x.Parentezco,
+                        TelefonoContacto = x.TelefonoContacto
+                    }).ToList();
+            }
+
             return new FirestoreModels.Menor
             {
+                FirstName = entity.FirstName,
+                LastName = entity.LastName,
+                Age = entity.Age,
+                Id = entity.Id,
+                LugaresFrecuentes = lugaresFrecuentes,
                 AlarmaEmergencia = alarmaEmergencia,
+                ContactoEmergencia = _contactoEmergencia,
                 LatitudHogar = entity.LatitudHogar,
                 LongitudHogar = entity.LongitudHogar
             };
-
-
         }
         private Menor MapFirebaseModelToEntity(FirestoreModels.Menor model)
         {
             Alerta alarmaEmergencia = null;
+            List<Ubicacion> lugaresFrecuentes = null;
+            List<ContactoEmergencia> _contactoEmergencia = null;
 
             if (model.AlarmaEmergencia != null)
             {
@@ -181,16 +219,47 @@ namespace Application.Data.Respositories
                     TelefonoContacto = model.AlarmaEmergencia.TelefonoContacto,
                     ContactosEmergencia = model.AlarmaEmergencia.ContactosEmergencia.Select(x => new ContactoEmergencia { Id = x.Id, Age = x.Age, Email = x.Email, FirstName = x.FirstName, LastName = x.LastName, FullName = x.FullName, Parentezco = x.Parentezco, TelefonoContacto = x.TelefonoContacto }).ToList(),
                 };
-
+            }
+            if (model.LugaresFrecuentes != null)
+            {
+                lugaresFrecuentes = model.LugaresFrecuentes.Select(x =>
+                    new Ubicacion
+                    {
+                        Id = x.Id,
+                        Longitud = x.Longitud,
+                        Nombre = x.Nombre,
+                        Latitud = x.Latitud
+                    }).ToList();
             }
 
+            if (model.ContactoEmergencia != null)
+            {
+                _contactoEmergencia = model.ContactoEmergencia.Select(x =>
+                    new ContactoEmergencia
+                    {
+                        Id = x.Id,
+                        Age = x.Age,
+                        Email = x.Email,
+                        FirstName = x.FirstName,
+                        LastName = x.LastName,
+                        FullName = x.FullName,
+                        Parentezco = x.Parentezco,
+                        TelefonoContacto = x.TelefonoContacto
+
+                    }).ToList();
+            }
             return new Menor
             {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Age = model.Age,
+                Id = model.Id,
+                LugaresFrecuentes = lugaresFrecuentes,
                 AlarmaEmergencia = alarmaEmergencia,
+                ContactoEmergencia = _contactoEmergencia,
                 LatitudHogar = model.LatitudHogar,
                 LongitudHogar = model.LongitudHogar
             };
-
         }
     }
 }

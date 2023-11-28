@@ -369,6 +369,19 @@
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
         }
+      },
+      "AlarmWebApplication/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/AlarmWebApplication.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AlarmWebApplication.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -891,10 +904,16 @@
         "system.runtime.compilerservices.unsafe.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "AlarmWebApplication/1.0.0": {
+      "type": "project",
+      "path": "../AlarmWebApplication/AlarmWebApplication.csproj",
+      "msbuildProject": "../AlarmWebApplication/AlarmWebApplication.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "AlarmWebApplication >= 1.0.0",
       "Google.Cloud.Firestore >= 3.4.0",
       "Newtonsoft.Json >= 13.0.3"
     ]
@@ -925,7 +944,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\vivia\\OneDrive\\Desktop\\TECNICAS 2\\Alarm\\AlarmWebApplication\\AlarmWebApplication.csproj": {
+              "projectPath": "C:\\Users\\vivia\\OneDrive\\Desktop\\TECNICAS 2\\Alarm\\AlarmWebApplication\\AlarmWebApplication.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

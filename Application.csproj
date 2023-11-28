@@ -17,6 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AlarmWebApplication\AlarmWebApplication.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Data\ejemploescuela-57cc9-firebase-adminsdk-wmst1-0016870e86.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

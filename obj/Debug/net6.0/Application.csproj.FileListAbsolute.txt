@@ -45,8 +45,14 @@ C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\Grp
 C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\Grpc.Net.Client.dll
 C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\Grpc.Net.Common.dll
 C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\System.Linq.Async.dll
 C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\obj\Debug\net6.0\Application.csproj.CopyComplete
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\AlarmWebApplication.deps.json
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\AlarmWebApplication.runtimeconfig.json
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\appsettings.json
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\AlarmWebApplication.staticwebassets.runtime.json
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\AlarmWebApplication.exe
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\AlarmWebApplication.dll
+C:\Users\vivia\OneDrive\Desktop\TECNICAS 2\Alarm\TEC2-2-APP\bin\Debug\net6.0\AlarmWebApplication.pdb

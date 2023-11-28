@@ -1,67 +1,70 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Application
+﻿public class Ubicacion
 {
+    private string _id;
+    private double _longitud;
+    private string _nombre;
+    private double _latitud;
+    private double _latitudActual;
+    private double _longitudActual;
 
-    public class Ubicacion
+    public string Id
     {
-        private string id;
-        private double longitud;
-        private string nombre;
-        private double latitud;
-        private double latitudActual;
-        private double longitudActual;
+        get { return _id; }
+        set { _id = value; }
+    }
 
-        public string Nombre
-        {
-            get { return nombre; }
-            set { nombre = value; }
-        }
+    public double Longitud
+    {
+        get { return _longitud; }
+        set { _longitud = value; }
+    }
 
-        public double Latitud
-        {
-            get { return latitud; }
-            set { latitud = value; }
-        }
+    public string Nombre
+    {
+        get { return _nombre; }
+        set { _nombre = value; }
+    }
 
-        public double Longitud
-        {
-            get { return longitud; }
-            set { longitud = value; }
-        }
+    public double Latitud
+    {
+        get { return _latitud; }
+        set { _latitud = value; }
+    }
 
-        public string Id { get => id; set => id = value; }
-        public int V1 { get; }
-        public int V2 { get; }
-        public string V3 { get; }
-        public int V4 { get; }
+    public double LatitudActual
+    {
+        get { return _latitudActual; }
+        set { _latitudActual = value; }
+    }
 
+    public double LongitudActual
+    {
+        get { return _longitudActual; }
+        set { _longitudActual = value; }
+    }
 
-        public Ubicacion()
-        {
+    public Ubicacion()
+    {
+    }
 
-        }
+    public Ubicacion(string nombre, double latitud, double longitud)
+    {
+    }
+    public Ubicacion(string id)
+    {
+        _id = id;
+    }
 
-        public Ubicacion(string id)
-        {
-            this.id = id;
-        }
+    public Ubicacion(string id, double longitud, string nombre, double latitud) : this(id)
+    {
+        _longitud = longitud;
+        _nombre = nombre;
+        _latitud = latitud;
+    }
 
-        public Ubicacion(string id, double longitud, string nombre, double latitud) : this(id)
-        {
-            this.longitud = longitud;
-            this.nombre = nombre;
-            this.latitud = latitud;
-        }
-        public Ubicacion(string id, int v1, int v2, string v3, int v4) : this(id)
-        {
-        }
-
-        public Ubicacion(double latitudActual, double longitudActual)
-        {
-            this.latitudActual = latitudActual;
-            this.longitudActual = longitudActual;
-        }
+    public Ubicacion(double latitudActual, double longitudActual)
+    {
+        _latitudActual = latitudActual;
+        _longitudActual = longitudActual;
     }
 }
