@@ -130,6 +130,7 @@ namespace Application.Data.Respositories
             }
         }
 
+
         private FirestoreModels.Ubicacion MapEntityToFirestoremodel(Ubicacion entity)
         {
             return new FirestoreModels.Ubicacion

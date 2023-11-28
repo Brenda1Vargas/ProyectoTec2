@@ -137,7 +137,9 @@ namespace Application.Data.Respositories
         {
             FirestoreModels.Alerta alarmaEmergencia = null;
             List<FirestoreModels.Ubicacion> lugaresFrecuentes = null;
+            List<FirestoreModels.Ubicacion> _ubicacionActual = null;
             List<FirestoreModels.ContactoEmergencia> _contactoEmergencia = null;
+
 
 
             if (entity.AlarmaEmergencia != null)
@@ -152,7 +154,7 @@ namespace Application.Data.Respositories
                     Hora = entity.AlarmaEmergencia.Hora,
                     Numero = entity.AlarmaEmergencia.Numero,
                     TelefonoContacto = entity.AlarmaEmergencia.TelefonoContacto,
-                    ContactosEmergencia = entity.AlarmaEmergencia.ContactosEmergencia.Select(x => new FirestoreModels.ContactoEmergencia { Id = x.Id, Age = x.Age, Email = x.Email, FirstName = x.FirstName, LastName = x.LastName, FullName = x.FullName, Parentezco = x.Parentezco, TelefonoContacto = x.TelefonoContacto }).ToList(),
+                    ContactosEmergencia = entity.AlarmaEmergencia?.ContactosEmergencia?.Select(x => new FirestoreModels.ContactoEmergencia { Id = x.Id, Age = x.Age, Email = x.Email, FirstName = x.FirstName, LastName = x.LastName, FullName = x.FullName, Parentezco = x.Parentezco, TelefonoContacto = x.TelefonoContacto }).ToList(),
                 };
 
             }
@@ -169,6 +171,19 @@ namespace Application.Data.Respositories
                         Latitud = x.Latitud
                     }).ToList();
             }
+
+            if (entity.UbicacionActual != null)
+            {
+                _ubicacionActual = entity.UbicacionActual.Select(x =>
+                    new FirestoreModels.Ubicacion
+                    {
+                        Id = x.Id,
+                        Longitud = x.Longitud,
+                        Nombre = x.Nombre,
+                        Latitud = x.Latitud
+                    }).ToList();
+            }
+
 
             if (entity.ContactoEmergencia != null)
             {
@@ -196,13 +211,16 @@ namespace Application.Data.Respositories
                 AlarmaEmergencia = alarmaEmergencia,
                 ContactoEmergencia = _contactoEmergencia,
                 LatitudHogar = entity.LatitudHogar,
-                LongitudHogar = entity.LongitudHogar
+                LongitudHogar = entity.LongitudHogar,
+                ImageUrl = entity.ImageUrl,
+                LocationUrl = entity.LocationUrl
             };
         }
         private Menor MapFirebaseModelToEntity(FirestoreModels.Menor model)
         {
             Alerta alarmaEmergencia = null;
             List<Ubicacion> lugaresFrecuentes = null;
+            List<Ubicacion> _ubicacionActual = null;
             List<ContactoEmergencia> _contactoEmergencia = null;
 
             if (model.AlarmaEmergencia != null)
@@ -223,6 +241,17 @@ namespace Application.Data.Respositories
             if (model.LugaresFrecuentes != null)
             {
                 lugaresFrecuentes = model.LugaresFrecuentes.Select(x =>
+                    new Ubicacion
+                    {
+                        Id = x.Id,
+                        Longitud = x.Longitud,
+                        Nombre = x.Nombre,
+                        Latitud = x.Latitud
+                    }).ToList();
+            }
+            if (model.UbicacionActual != null)
+            {
+                _ubicacionActual = model.UbicacionActual.Select(x =>
                     new Ubicacion
                     {
                         Id = x.Id,
@@ -256,9 +285,12 @@ namespace Application.Data.Respositories
                 Id = model.Id,
                 LugaresFrecuentes = lugaresFrecuentes,
                 AlarmaEmergencia = alarmaEmergencia,
+                UbicacionActual = _ubicacionActual,
                 ContactoEmergencia = _contactoEmergencia,
                 LatitudHogar = model.LatitudHogar,
-                LongitudHogar = model.LongitudHogar
+                LongitudHogar = model.LongitudHogar,
+                ImageUrl = model.ImageUrl,
+                LocationUrl = model.LocationUrl
             };
         }
     }
